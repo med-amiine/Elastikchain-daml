@@ -1,239 +1,251 @@
 module Main where
 
 -- Expected workflow :
---  exporter-->apply
---   customsMar-->confirme
---    exporter-->send 
---     importer-->declare
---      customGua-->Release
+--  operator(Elastik)-->InviteParticipant/InviteClient / AddParticipantToProject / InviteJudge / JudgeCriteria
+--  participant-->AcceptParticipantRequest / AddEditProfile / *AddEditsubmission / *CreateTeam / *JoinTeam / 
+--  client--> CreateProject / CreatChallenge / AddEditProfile / AddJudgeToProject
+--  judgs -->  *VoteForProject(SpecifyRating) 
 
-data Importinfo = Importinfo
+-- anybody can be an operator ?? specify only one operator
+-- participant should not be invited multiple times !!
+-- shoud not have two profiles ol
+
+-- import Daml.Script
+-- import DA.Date
+
+data Challenge = Challenge
   with
-    quantity: Int
-    value: Decimal
-  deriving (Eq, Show)  
+    name: Text 
+    prize: Text 
+  deriving(Eq, Show)
 
-data COData = COData
-  with
-    ref: Text
-    originCountry: Text
-    destinationCountry: Text
-    goodsDescription: Text
-    hsNumber: Text
-    transportInfo: Text
-    quantity: Int
-    certificateContent: Text 
-  deriving (Eq, Show)
-
-template Announcement
+-- invite all parties
+template Platform 
   with 
-    user: Party 
+    operator: Party 
   where
-    signatory user
+    signatory operator
 
--- invite all parties to the network 
-template Network 
-  with 
-    operator: Party -- gouvernance party
+    controller operator can
+      nonconsuming InviteClient: ContractId ClientInvitation
+        with 
+          client: Party 
+        do create ClientInvitation with ..
+
+    controller operator can
+      nonconsuming InviteParticipant: ContractId ParticipantInvitation
+        with 
+          participant: Party 
+        do create ParticipantInvitation with ..
+
+    controller operator can
+      nonconsuming InviteJudge: ContractId JudgeInvitation
+        with 
+          judge: Party 
+        do create JudgeInvitation with .. 
+
+--  ----------------------------------------------------------------
+
+-- Judge invitation
+template JudgeInvitation
+  with
+    judge: Party 
+    operator: Party
   where 
-    signatory operator -- producteur ou operator economique
+    signatory operator 
+
+    controller judge can 
+      AcceptjudgeRequest: ContractId JudgeRole
+        do create JudgeRole with ..
+
+template JudgeRole
+  with 
+    judge: Party 
+    operator: Party 
+  where 
+    signatory judge, operator 
+
+    controller judge can 
+      nonconsuming JudgeForProject: ContractId RequestToJudgeProject
+        with 
+          projectId: Text 
+          client: Party
+        do create RequestToJudgeProject with ..
+
+template RequestToJudgeProject
+  with 
+    judge: Party 
+    client: Party
+    operator: Party 
+    projectId: Text
+  where 
+    signatory judge 
+
+    controller judge can 
+      AddJudgeToProject: ContractId ClientProject 
+        do 
+          exerciseByKey @ClientProject (client, projectId) AddJudge with judge
+
+--  ----------------------------------------------------------------
+
+-- Participant invitation
+template ParticipantInvitation
+  with
+    participant: Party 
+    operator: Party
+  where 
+    signatory operator 
+
+    controller participant can 
+      AcceptParticipantRequest: ContractId ParticipantRole
+        do create ParticipantRole with ..
+
+template ParticipantRole
+  with 
+    participant: Party 
+    operator: Party 
+  where 
+    signatory participant, operator 
+
+    controller participant can 
+      AddParProfile: ContractId ParticipantProfile
+        with
+          first:Text
+          last:Text
+          email:Text
+        do
+          create ParticipantProfile with ..
+
+    controller participant can 
+      nonconsuming RegisterForProject: ContractId RequestToJoinProject
+        with 
+          projectId: Text 
+          client: Party
+        do create RequestToJoinProject with ..
+
+template RequestToJoinProject
+  with 
+    participant: Party 
+    client: Party
+    operator: Party 
+    projectId: Text
+  where 
+    signatory participant 
+
+    controller operator can 
+      AddParticipantToProject: ContractId ClientProject 
+        do 
+          exerciseByKey @ClientProject (client, projectId) AddParticipant with participant
+
+--  ----------------------------------------------------------------
+
+-- client invitation
+template ClientInvitation
+  with
+    client: Party 
+    operator: Party
+  where 
+    signatory operator 
+
+    controller client can 
+      AcceptRequest: ContractId ClientRole
+        do create ClientRole with ..
+
+template ClientRole
+  with 
+    client: Party 
+    operator: Party 
+  where 
+    signatory client, operator 
     
-    -- create an invitation for a specific party
-    controller operator can 
-      nonconsuming InviteCustomsMar : ContractId CustomsMarInvitation
+    controller client can 
+      nonconsuming AddEditCliProfile: ContractId ClientProfile
+        with
+          first:Text
+          last:Text
+          email:Text
+        do
+          create ClientProfile with ..
+
+    controller client can 
+      nonconsuming CreateProject: ContractId ClientProject 
         with 
-          customsMar: Party 
-        do create CustomsMarInvitation with ..
+          name: Text 
+          projectId: Text
+        do 
+          create ClientProject with operator, client, projectId, name, desc = "", criteria = "", challenges = [], participants = [], judges = []
+
+--  ----------------------------------------------------------------
+
+-- create a hackathon
+template ClientProject
+  with 
+    client: Party 
+    operator: Party 
+    projectId: Text
+    name: Text 
+    desc:  Text
+    criteria: Text
+    challenges: [Challenge]
+    participants: [Party]
+    judges: [Party]
+  where
+    signatory client 
+    observer participants
+    observer judges
+    
+    key (client,projectId): (Party, Text)
+    maintainer key._1
+
+    controller client can 
+       AddUpdateDescription: ContractId ClientProject 
+        with 
+          newDesc: Text 
+        do create this with client, name, desc= newDesc, challenges
+
+    controller client can 
+       AddUpdateCriteria: ContractId ClientProject 
+        with 
+          newCriteria: Text 
+        do create this with client, name,desc, criteria= newCriteria, challenges
+
+    controller client can 
+       AddUpdateChallenge: ContractId ClientProject 
+        with 
+          challenge: Challenge 
+        do create this with client, name, desc,criteria, challenges = challenge::challenges
     
     controller operator can 
-      nonconsuming InviteExporter : ContractId ExporterInvitation
+       AddParticipant: ContractId ClientProject 
         with 
-          exporter: Party 
-        do create ExporterInvitation with ..
+          participant: Party 
+        do create this with operator, client, name, desc, criteria, challenges, participants = participant::participants
 
-    controller operator can 
-      nonconsuming InviteImporter : ContractId ImporterInvitation
+    controller client can 
+       AddJudge: ContractId ClientProject 
         with 
-          importer: Party 
-        do create ImporterInvitation with ..
+          judge: Party 
+        do create this with operator, client, name, desc, criteria, challenges, judges = judge::judges
 
-    controller operator can 
-      nonconsuming InviteCustomsGua : ContractId CustomsGuaInvitation
-        with 
-          customsGua: Party 
-        do create CustomsGuaInvitation with ..
 
-    -- controller operator can 
-    --   nonconsuming InviteMinistryOfTrade : ContractId MinistryOfTradeInvitation
-    --     with 
-    --       ministryOfTrade: Party 
-    --     do create CustomsGuaInvitation with ..
-          
-template CustomsMarInvitation -- the invitation to join the network as Moroccan customs
+-- client / participant profile
+
+template ClientProfile
   with 
-    operator: Party 
-    customsMar: Party 
-  where
-    signatory operator 
-    controller customsMar can 
-      AcceptCustomsMarInvitation: ContractId CustomsMarRole -- the Party accept the invitation
-        do create CustomsMarRole with ..
-
-template CustomsMarRole -- Creation of the new role must be signed by the party and the opretaor
-  with
-    operator: Party 
-    customsMar: Party  
+    client: Party 
+    first: Text 
+    last:  Text
+    email: Text
   where 
-    signatory operator, customsMar 
+    signatory client
 
-template CustomsGuaInvitation -- invite/create the Guatemalian customs
+
+
+template ParticipantProfile
   with 
-    operator: Party 
-    customsGua: Party 
-  where
-    signatory operator 
-    controller customsGua can 
-      AcceptCustomsGuaInvitation: ContractId CustomsGuaRole 
-        do create CustomsGuaRole with ..
-
-template CustomsGuaRole
-  with
-    operator: Party 
-    customsGua: Party  
+    participant: Party 
+    first: Text 
+    last:  Text
+    email: Text
   where 
-    signatory operator, customsGua 
-
-template ImporterInvitation -- invite/create the importer
-  with 
-    operator: Party 
-    importer: Party 
-  where
-    signatory operator 
-    controller importer can 
-      AcceptImporterInvitation: ContractId ImporterRole 
-        do create ImporterRole with ..
-
-template ImporterRole
-  with
-    operator: Party 
-    importer: Party  
-  where 
-    signatory operator, importer
-
-template ExporterInvitation -- invite the exporter
-  with 
-    operator: Party 
-    exporter: Party 
-  where
-    signatory operator 
-
-    controller exporter can 
-      AcceptExporterInvitation: ContractId ExporterRole 
-        do create ExporterRole with ..
-
-template ExporterRole
-  with
-    operator: Party 
-    exporter: Party  
-  where 
-    signatory operator, exporter 
-
-    controller exporter can 
-      nonconsuming CreateCO : ContractId  CertificateOfOrigin
-        with 
-          coData: COData
-          customsMar : Party 
-        do create CertificateOfOrigin with ..
-
-template CertificateOfOrigin
-  with 
-    -- coData: COData
-    exporter: Party
-    customsMar : Party 
-  where
-    signatory exporter 
-
-    controller customsMar can 
-      ConfirmCo: ContractId InspectCertificate
-        do create InspectCertificate with coTemplate = this
-
-template InspectCertificate
-  with 
-    coTemplate: CertificateOfOrigin
-  where 
-    signatory coTemplate.customsMar
-    observer coTemplate.exporter 
-
-    controller coTemplate.exporter can 
-        SendCo: ContractId CoForImporter
-          with 
-            importer: Party 
-          do create CoForImporter with coTemplate ,importer
-
-template CoForImporter
-  with
-    coTemplate: CertificateOfOrigin
-    importer: Party
-  where 
-    signatory coTemplate.exporter
-
-    controller importer can 
-        SendImportDeclaration: ContractId ImportDeclaration
-          with 
-            customsGua: Party 
-            importinfo: Importinfo
-          do create ImportDeclaration with coTemplate, importinfo, customsGua, importer
-
-template ImportDeclaration
-  with
-    coTemplate: CertificateOfOrigin
-    customsGua: Party
-    importinfo: Importinfo
-    importer: Party
-  where 
-    signatory importer
-    observer coTemplate.exporter
-
-    controller customsGua can 
-        ReleaseCo: ContractId ReleasedCertificate
-          do create ReleasedCertificate with coTemplate, customsGua, importer
-    
-        RequestSecondConfirmation: ContractId RequestCertificate
-          do create RequestCertificate with coTemplate, customsGua,importer
-
-template RequestCertificate
-  with
-    coTemplate: CertificateOfOrigin
-    customsGua: Party
-    importer: Party
-  where 
-    signatory customsGua
-    observer coTemplate.exporter
-
-    controller coTemplate.customsMar can
-      SendThirdConfirmation: ContractId RenconciliationCertificate
-          with 
-            importinfo: Importinfo
-          do create RenconciliationCertificate with coTemplate,importer,customsGua
-
-template RenconciliationCertificate
-  with
-    coTemplate: CertificateOfOrigin
-    customsGua: Party
-    importer: Party
-  where 
-    signatory coTemplate.customsMar
-
-    controller customsGua can 
-      SendSignatoryConfirmation: ContractId ReleasedCertificate
-        do create ReleasedCertificate with coTemplate,customsGua,importer
-
-template ReleasedCertificate
-  with
-    coTemplate: CertificateOfOrigin
-    customsGua: Party
-    importer: Party
-  where 
-    signatory customsGua
-    observer coTemplate.exporter
-    observer importer
+    signatory participant
