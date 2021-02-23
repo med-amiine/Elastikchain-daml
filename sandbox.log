@@ -4,3 +4,75 @@
 03:02:27.581 [sandbox-akka.actor.default-dispatcher-4] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started 
 03:02:33.025 [pool-1-thread-4] INFO  c.d.p.apiserver.LedgerApiServer - Listening on localhost:6865 over plain text. 
 03:02:33.038 [pool-1-thread-2] INFO  com.daml.platform.sandboxnext.Runner - Initialized sandbox version 1.7.0 with ledger-id = cosmart, port = 6865, dar file = List(.daml/dist/cosmart-0.0.1.dar), time mode = wall-clock time, ledger = in-memory, auth-service = AuthServiceWildcard$, contract ids seeding = strong 
+20:49:56.760 [sandbox-akka.actor.default-dispatcher-4] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started 
+20:50:06.964 [pool-1-thread-2] INFO  c.d.p.apiserver.LedgerApiServer - Listening on localhost:6865 over plain text. 
+20:50:06.984 [pool-1-thread-1] INFO  com.daml.platform.sandboxnext.Runner - Initialized sandbox version 1.7.0 with ledger-id = cosmart, port = 6865, dar file = List(.daml/dist/cosmart-0.0.1.dar), time mode = wall-clock time, ledger = in-memory, auth-service = AuthServiceWildcard$, contract ids seeding = strong 
+23:41:06.533 [sandbox-akka.actor.default-dispatcher-4] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started 
+23:41:18.730 [pool-1-thread-1] INFO  c.d.p.apiserver.LedgerApiServer - Listening on localhost:6865 over plain text. 
+23:41:18.826 [pool-1-thread-1] INFO  com.daml.platform.sandboxnext.Runner - Initialized sandbox version 1.7.0 with ledger-id = cosmart, port = 6865, dar file = List(.daml/dist/cosmart-0.0.1.dar), time mode = wall-clock time, ledger = in-memory, auth-service = AuthServiceWildcard$, contract ids seeding = strong 
+00:20:09.481 [sandbox-akka.actor.default-dispatcher-4] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started 
+00:20:16.076 [pool-1-thread-1] INFO  c.d.p.apiserver.LedgerApiServer - Listening on localhost:6865 over plain text. 
+00:20:16.090 [pool-1-thread-2] INFO  com.daml.platform.sandboxnext.Runner - Initialized sandbox version 1.7.0 with ledger-id = cosmart, port = 6865, dar file = List(.daml/dist/cosmart-0.0.1.dar), time mode = wall-clock time, ledger = in-memory, auth-service = AuthServiceWildcard$, contract ids seeding = strong 
+16:02:40.173 [sandbox-akka.actor.default-dispatcher-4] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started 
+16:02:45.901 [pool-1-thread-4] INFO  c.d.p.apiserver.LedgerApiServer - Listening on localhost:6865 over plain text. 
+16:02:45.917 [pool-1-thread-2] INFO  com.daml.platform.sandboxnext.Runner - Initialized sandbox version 1.7.0 with ledger-id = cosmart, port = 6865, dar file = List(.daml/dist/cosmart-0.0.1.dar), time mode = wall-clock time, ledger = in-memory, auth-service = AuthServiceWildcard$, contract ids seeding = strong 
+17:43:40.897 [sandbox-akka.actor.default-dispatcher-4] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started 
+17:43:46.213 [pool-1-thread-2] INFO  c.d.p.apiserver.LedgerApiServer - Listening on localhost:6865 over plain text. 
+17:43:46.232 [pool-1-thread-4] INFO  com.daml.platform.sandboxnext.Runner - Initialized sandbox version 1.7.0 with ledger-id = cosmart, port = 6865, dar file = List(.daml/dist/cosmart-0.0.1.dar), time mode = wall-clock time, ledger = in-memory, auth-service = AuthServiceWildcard$, contract ids seeding = strong 
+05:12:46.204 [sandbox-akka.actor.default-dispatcher-4] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started 
+05:12:52.403 [pool-1-thread-2] INFO  c.d.p.apiserver.LedgerApiServer - Listening on localhost:6865 over plain text. 
+05:12:52.418 [pool-1-thread-4] INFO  com.daml.platform.sandboxnext.Runner - Initialized sandbox version 1.7.0 with ledger-id = cosmart, port = 6865, dar file = List(.daml/dist/cosmart-0.0.1.dar), time mode = wall-clock time, ledger = in-memory, auth-service = AuthServiceWildcard$, contract ids seeding = strong 
+05:14:46.049 [sandbox-akka.actor.default-dispatcher-4] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started 
+05:14:51.260 [pool-1-thread-1] INFO  c.d.p.apiserver.LedgerApiServer - Listening on localhost:6865 over plain text. 
+05:14:51.272 [pool-1-thread-3] INFO  com.daml.platform.sandboxnext.Runner - Initialized sandbox version 1.7.0 with ledger-id = cosmart, port = 6865, dar file = List(.daml/dist/cosmart-0.0.1.dar), time mode = wall-clock time, ledger = in-memory, auth-service = AuthServiceWildcard$, contract ids seeding = strong 
+05:16:54.141 [sandbox-akka.actor.default-dispatcher-4] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started 
+05:17:00.910 [pool-1-thread-4] INFO  c.d.p.apiserver.LedgerApiServer - Listening on localhost:6865 over plain text. 
+05:17:00.926 [pool-1-thread-4] INFO  com.daml.platform.sandboxnext.Runner - Initialized sandbox version 1.7.0 with ledger-id = cosmart, port = 6865, dar file = List(.daml/dist/cosmart-0.0.1.dar), time mode = wall-clock time, ledger = in-memory, auth-service = AuthServiceWildcard$, contract ids seeding = strong 
+05:26:29.086 [sandbox-akka.actor.default-dispatcher-5] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started 
+05:26:38.235 [pool-1-thread-4] INFO  c.d.p.apiserver.LedgerApiServer - Listening on localhost:6865 over plain text. 
+05:26:38.251 [pool-1-thread-1] INFO  com.daml.platform.sandboxnext.Runner - Initialized sandbox version 1.7.0 with ledger-id = cosmart, port = 6865, dar file = List(.daml/dist/cosmart-0.0.1.dar), time mode = wall-clock time, ledger = in-memory, auth-service = AuthServiceWildcard$, contract ids seeding = strong 
+05:29:19.088 [sandbox-akka.actor.default-dispatcher-4] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started 
+05:29:25.442 [pool-1-thread-3] INFO  c.d.p.apiserver.LedgerApiServer - Listening on localhost:6865 over plain text. 
+05:29:25.456 [pool-1-thread-2] INFO  com.daml.platform.sandboxnext.Runner - Initialized sandbox version 1.7.0 with ledger-id = cosmart, port = 6865, dar file = List(.daml/dist/cosmart-0.0.1.dar), time mode = wall-clock time, ledger = in-memory, auth-service = AuthServiceWildcard$, contract ids seeding = strong 
+05:38:06.357 [sandbox-akka.actor.default-dispatcher-4] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started 
+05:38:11.438 [pool-1-thread-2] INFO  c.d.p.apiserver.LedgerApiServer - Listening on localhost:6865 over plain text. 
+05:38:11.450 [pool-1-thread-1] INFO  com.daml.platform.sandboxnext.Runner - Initialized sandbox version 1.7.0 with ledger-id = cosmart, port = 6865, dar file = List(.daml/dist/cosmart-0.0.1.dar), time mode = wall-clock time, ledger = in-memory, auth-service = AuthServiceWildcard$, contract ids seeding = strong 
+06:02:06.559 [sandbox-akka.actor.default-dispatcher-4] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started 
+06:02:13.531 [pool-1-thread-2] INFO  c.d.p.apiserver.LedgerApiServer - Listening on localhost:6865 over plain text. 
+06:02:13.550 [pool-1-thread-3] INFO  com.daml.platform.sandboxnext.Runner - Initialized sandbox version 1.7.0 with ledger-id = cosmart, port = 6865, dar file = List(.daml/dist/cosmart-0.0.1.dar), time mode = wall-clock time, ledger = in-memory, auth-service = AuthServiceWildcard$, contract ids seeding = strong 
+06:03:38.204 [sandbox-akka.actor.default-dispatcher-4] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started 
+06:03:45.128 [pool-1-thread-3] INFO  c.d.p.apiserver.LedgerApiServer - Listening on localhost:6865 over plain text. 
+06:03:45.147 [pool-1-thread-4] INFO  com.daml.platform.sandboxnext.Runner - Initialized sandbox version 1.7.0 with ledger-id = cosmart, port = 6865, dar file = List(.daml/dist/cosmart-0.0.1.dar), time mode = wall-clock time, ledger = in-memory, auth-service = AuthServiceWildcard$, contract ids seeding = strong 
+06:15:22.637 [sandbox-akka.actor.default-dispatcher-4] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started 
+06:15:32.766 [pool-1-thread-3] INFO  c.d.p.apiserver.LedgerApiServer - Listening on localhost:6865 over plain text. 
+06:15:32.795 [pool-1-thread-2] INFO  com.daml.platform.sandboxnext.Runner - Initialized sandbox version 1.7.0 with ledger-id = cosmart, port = 6865, dar file = List(.daml/dist/cosmart-0.0.1.dar), time mode = wall-clock time, ledger = in-memory, auth-service = AuthServiceWildcard$, contract ids seeding = strong 
+07:32:17.423 [sandbox-akka.actor.default-dispatcher-5] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started 
+07:32:23.452 [pool-1-thread-3] INFO  c.d.p.apiserver.LedgerApiServer - Listening on localhost:6865 over plain text. 
+07:32:23.468 [pool-1-thread-2] INFO  com.daml.platform.sandboxnext.Runner - Initialized sandbox version 1.7.0 with ledger-id = cosmart, port = 6865, dar file = List(.daml/dist/cosmart-0.0.1.dar), time mode = wall-clock time, ledger = in-memory, auth-service = AuthServiceWildcard$, contract ids seeding = strong 
+07:52:52.839 [sandbox-akka.actor.default-dispatcher-4] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started 
+07:52:58.323 [pool-1-thread-1] INFO  c.d.p.apiserver.LedgerApiServer - Listening on localhost:6865 over plain text. 
+07:52:58.338 [pool-1-thread-2] INFO  com.daml.platform.sandboxnext.Runner - Initialized sandbox version 1.7.0 with ledger-id = cosmart, port = 6865, dar file = List(.daml/dist/cosmart-0.0.1.dar), time mode = wall-clock time, ledger = in-memory, auth-service = AuthServiceWildcard$, contract ids seeding = strong 
+08:10:08.476 [sandbox-akka.actor.default-dispatcher-4] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started 
+08:10:13.952 [pool-1-thread-2] INFO  c.d.p.apiserver.LedgerApiServer - Listening on localhost:6865 over plain text. 
+08:10:13.968 [pool-1-thread-1] INFO  com.daml.platform.sandboxnext.Runner - Initialized sandbox version 1.7.0 with ledger-id = cosmart, port = 6865, dar file = List(.daml/dist/cosmart-0.0.1.dar), time mode = wall-clock time, ledger = in-memory, auth-service = AuthServiceWildcard$, contract ids seeding = strong 
+08:29:59.084 [sandbox-akka.actor.default-dispatcher-4] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started 
+08:30:04.690 [pool-1-thread-2] INFO  c.d.p.apiserver.LedgerApiServer - Listening on localhost:6865 over plain text. 
+08:30:04.707 [pool-1-thread-4] INFO  com.daml.platform.sandboxnext.Runner - Initialized sandbox version 1.7.0 with ledger-id = cosmart, port = 6865, dar file = List(.daml/dist/cosmart-0.0.1.dar), time mode = wall-clock time, ledger = in-memory, auth-service = AuthServiceWildcard$, contract ids seeding = strong 
+08:36:19.154 [sandbox-akka.actor.default-dispatcher-4] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started 
+08:36:24.817 [pool-1-thread-1] INFO  c.d.p.apiserver.LedgerApiServer - Listening on localhost:6865 over plain text. 
+08:36:24.828 [pool-1-thread-3] INFO  com.daml.platform.sandboxnext.Runner - Initialized sandbox version 1.7.0 with ledger-id = cosmart, port = 6865, dar file = List(.daml/dist/cosmart-0.0.1.dar), time mode = wall-clock time, ledger = in-memory, auth-service = AuthServiceWildcard$, contract ids seeding = strong 
+04:09:27.186 [sandbox-akka.actor.default-dispatcher-4] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started 
+04:09:32.979 [pool-1-thread-3] INFO  c.d.p.apiserver.LedgerApiServer - Listening on localhost:6865 over plain text. 
+04:09:32.994 [pool-1-thread-4] INFO  com.daml.platform.sandboxnext.Runner - Initialized sandbox version 1.7.0 with ledger-id = cosmart, port = 6865, dar file = List(.daml/dist/cosmart-0.0.1.dar), time mode = wall-clock time, ledger = in-memory, auth-service = AuthServiceWildcard$, contract ids seeding = strong 
+22:30:24.054 [sandbox-akka.actor.default-dispatcher-4] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started 
+22:30:32.579 [pool-1-thread-3] INFO  c.d.p.apiserver.LedgerApiServer - Listening on localhost:6865 over plain text. 
+22:30:32.605 [pool-1-thread-4] INFO  com.daml.platform.sandboxnext.Runner - Initialized sandbox version 1.7.0 with ledger-id = cosmart, port = 6865, dar file = List(.daml/dist/cosmart-0.0.1.dar), time mode = wall-clock time, ledger = in-memory, auth-service = AuthServiceWildcard$, contract ids seeding = strong 
+22:34:42.673 [sandbox-akka.actor.default-dispatcher-4] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started 
+22:34:48.686 [pool-1-thread-1] INFO  c.d.p.apiserver.LedgerApiServer - Listening on localhost:6865 over plain text. 
+22:34:48.710 [pool-1-thread-4] INFO  com.daml.platform.sandboxnext.Runner - Initialized sandbox version 1.7.0 with ledger-id = cosmart, port = 6865, dar file = List(.daml/dist/cosmart-0.0.1.dar), time mode = wall-clock time, ledger = in-memory, auth-service = AuthServiceWildcard$, contract ids seeding = strong 
+03:51:37.893 [sandbox-akka.actor.default-dispatcher-4] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started 
+03:51:47.526 [pool-1-thread-4] INFO  c.d.p.apiserver.LedgerApiServer - Listening on localhost:6865 over plain text. 
+03:51:47.562 [pool-1-thread-3] INFO  com.daml.platform.sandboxnext.Runner - Initialized sandbox version 1.7.0 with ledger-id = cosmart, port = 6865, dar file = List(.daml/dist/cosmart-0.0.1.dar), time mode = wall-clock time, ledger = in-memory, auth-service = AuthServiceWildcard$, contract ids seeding = strong 
+04:16:07.587 [sandbox-akka.actor.default-dispatcher-4] INFO  akka.event.slf4j.Slf4jLogger - Slf4jLogger started 
+04:16:18.534 [pool-1-thread-3] INFO  c.d.p.apiserver.LedgerApiServer - Listening on localhost:6865 over plain text. 
+04:16:18.564 [pool-1-thread-4] INFO  com.daml.platform.sandboxnext.Runner - Initialized sandbox version 1.7.0 with ledger-id = cosmart, port = 6865, dar file = List(.daml/dist/cosmart-0.0.1.dar), time mode = wall-clock time, ledger = in-memory, auth-service = AuthServiceWildcard$, contract ids seeding = strong 

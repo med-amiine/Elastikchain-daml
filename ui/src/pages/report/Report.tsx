@@ -5,10 +5,10 @@ import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 import Button from "@material-ui/core/Button";
-import Ledger from "@daml/ledger";
-import { useStreamQuery, useLedger, useParty } from "@daml/react";
+// import Ledger from "@daml/ledger";
+import { useStreamQueries, useLedger, useParty } from "@daml/react";
 import { ContractId } from "@daml/types";
-import { InviteCustomsMar,InviteExporter,InviteImporter,InviteCustomsGua,AcceptExporterInvitation,ExporterInvitation, Network  } from "@daml.js/cosmart-0.0.1/lib/Main";
+import { InviteClient,ClientInvitation,AcceptRequest, Platform  } from "@daml.js/cosmart-0.0.1/lib/Main";
 import { InputDialog, InputDialogProps } from "./InputDialog";
 import { AlertDialog } from "./AlertDialog";
 
@@ -17,35 +17,99 @@ import useStyles from "./styles";
 export default function Report() {
   const classes = useStyles();
   const party = useParty();
-  const ledger : Ledger = useLedger();
-  const assets = useStreamQuery(Network).contracts;
-  const assetsb = useStreamQuery(ExporterInvitation).contracts;
+  const ledger = useLedger();
+  const assets = useStreamQueries(Platform).contracts;
+  // const assets = useStreamQueries(ClientInvitation).contracts;
 
-  const defaultInviteCustomsMarProps : InputDialogProps<InviteCustomsMar> = {
+  // const defaultInviteCustomsMarProps : InputDialogProps<InviteCustomsMar> = {
+  //   open: false,
+  //   title: "Invite Customs Mar",
+  //   defaultValue: { customsMar : "" },
+  //   fields: {
+  //     customsMar : {
+  //       label: "customs Mar",
+  //       type: "text" }},
+  //       // items: [ "Alice", "Bob" ] } },
+  //   onClose: async function() {}
+  // };
+
+  // const [ inviteCustomsMarProps, setInviteCustomsMarProps ] = useState(defaultInviteCustomsMarProps);
+  // // One can pass the original contracts CreateEvent
+  // function showInviteCustomsMar(asset : Platform.CreateEvent) {
+  //   async function onClose(state : InviteCustomsMar | null) {
+  //     setInviteCustomsMarProps({ ...defaultInviteCustomsMarProps, open: false});
+  //     // if you want to use the contracts payload
+  //     // if (!state || asset.payload.owner === state.newOwner) return;
+  //     await ledger.exercise(Platform.InviteCustomsMar, asset.contractId, state);
+  //   };
+  //   setInviteCustomsMarProps({ ...defaultInviteCustomsMarProps, open: true, onClose})
+  // };
+  
+  // const defaultInviteCustomsGuaProps : InputDialogProps<InviteCustomsGua> = {
+  //   open: false,
+  //   title: "Invite Customs Gua",
+  //   defaultValue: { customsGua : "" },
+  //   fields: {
+  //     customsGua : {
+  //       label: "customs Gua",
+  //       type: "text" }},
+  //   onClose: async function() {}
+  // };
+
+  // const [ inviteCustomsGuaProps, setInviteCustomsGuaProps ] = useState(defaultInviteCustomsGuaProps);
+  // // One can pass the original contracts CreateEvent
+  // function showInviteCustomsGua(asset : Platform.CreateEvent) {
+  //   async function onClose(state : InviteCustomsGua | null) {
+  //     setInviteCustomsGuaProps({ ...defaultInviteCustomsGuaProps, open: false});
+  //     await ledger.exercise(Platform.InviteCustomsGua, asset.contractId, state);
+  //   };
+  //   setInviteCustomsGuaProps({ ...defaultInviteCustomsGuaProps, open: true, onClose})
+  // };
+
+  const defaultInviteClientProps : InputDialogProps<InviteClient> = {
     open: false,
-    title: "Invite Customs Mar",
-    defaultValue: { customsMar : "" },
+    title: "Invite client",
+    defaultValue: { client : "" },
     fields: {
-      customsMar : {
-        label: "customs Mar",
+      client : {
+        label: "Client",
         type: "text" }},
-        // items: [ "Alice", "Bob" ] } },
     onClose: async function() {}
   };
 
-  const [ inviteCustomsMarProps, setInviteCustomsMarProps ] = useState(defaultInviteCustomsMarProps);
+  const [ inviteClientProps, setInviteClientProps ] = useState(defaultInviteClientProps);
   // One can pass the original contracts CreateEvent
-  function showInviteCustomsMar(asset : Network.CreateEvent) {
-    async function onClose(state : InviteCustomsMar | null) {
-      setInviteCustomsMarProps({ ...defaultInviteCustomsMarProps, open: false});
-      // if you want to use the contracts payload
-      // if (!state || asset.payload.owner === state.newOwner) return;
-      await ledger.exercise(Network.InviteCustomsMar, asset.contractId, state);
+  function showInviteClient(asset : Platform.CreateEvent) {
+    async function onClose(state : InviteClient | null) {
+      setInviteClientProps({ ...defaultInviteClientProps, open: false});
+      await ledger.exercise(Platform.InviteClient, asset.contractId, state);
     };
-    setInviteCustomsMarProps({ ...defaultInviteCustomsMarProps, open: true, onClose})
+    setInviteClientProps({ ...defaultInviteClientProps, open: true, onClose})
   };
   
-  const defaultInviteCustomsGuaProps : InputDialogProps<InviteCustomsGua> = {
+  // const defaultInviteImporterProps : InputDialogProps<InviteImporter> = {
+  //   open: false,
+  //   title: "Invite client",
+  //   defaultValue: { importer : "" },
+  //   fields: {
+  //     importer : {
+  //       label: "Importer",
+  //       type: "text" }},
+  //   onClose: async function() {}
+  // };
+
+  // const [ inviteImporterProps, setInviteImporterProps ] = useState(defaultInviteImporterProps);
+  // // One can pass the original contracts CreateEvent
+  // function showInviteImporter(asset : Platform.CreateEvent) {
+  //   async function onClose(state : InviteImporter | null) {
+  //     setInviteImporterProps({ ...defaultInviteImporterProps, open: false});
+  //     await ledger.exercise(Platform.InviteImporter, asset.contractId, state);
+  //   };
+  //   setInviteImporterProps({ ...defaultInviteImporterProps, open: true, onClose})
+  // };
+
+
+  const defaultAcceptRequestProps : InputDialogProps<AcceptRequest> = {
     open: false,
     title: "Invite Customs Gua",
     defaultValue: { customsGua : "" },
@@ -56,78 +120,14 @@ export default function Report() {
     onClose: async function() {}
   };
 
-  const [ inviteCustomsGuaProps, setInviteCustomsGuaProps ] = useState(defaultInviteCustomsGuaProps);
+  const [ AcceptRequestProps, setAcceptRequestProps ] = useState(defaultAcceptRequestProps);
   // One can pass the original contracts CreateEvent
-  function showInviteCustomsGua(asset : Network.CreateEvent) {
-    async function onClose(state : InviteCustomsGua | null) {
-      setInviteCustomsGuaProps({ ...defaultInviteCustomsGuaProps, open: false});
-      await ledger.exercise(Network.InviteCustomsGua, asset.contractId, state);
+  function showAcceptRequest(asset : ClientInvitation.CreateEvent) {
+    async function onClose(state : AcceptRequest | null) {
+      setAcceptRequestProps({ ...defaultAcceptRequestProps, open: false});
+      await ledger.exercise(ClientInvitation.AcceptRequest, asset.contractId, state);
     };
-    setInviteCustomsGuaProps({ ...defaultInviteCustomsGuaProps, open: true, onClose})
-  };
-
-  const defaultInviteExporterProps : InputDialogProps<InviteExporter> = {
-    open: false,
-    title: "Invite exporter",
-    defaultValue: { exporter : "" },
-    fields: {
-      exporter : {
-        label: "Exporter",
-        type: "text" }},
-    onClose: async function() {}
-  };
-
-  const [ inviteExporterProps, setInviteExporterProps ] = useState(defaultInviteExporterProps);
-  // One can pass the original contracts CreateEvent
-  function showInviteExporter(asset : Network.CreateEvent) {
-    async function onClose(state : InviteExporter | null) {
-      setInviteExporterProps({ ...defaultInviteExporterProps, open: false});
-      await ledger.exercise(Network.InviteExporter, asset.contractId, state);
-    };
-    setInviteExporterProps({ ...defaultInviteExporterProps, open: true, onClose})
-  };
-  
-  const defaultInviteImporterProps : InputDialogProps<InviteImporter> = {
-    open: false,
-    title: "Invite exporter",
-    defaultValue: { importer : "" },
-    fields: {
-      importer : {
-        label: "Importer",
-        type: "text" }},
-    onClose: async function() {}
-  };
-
-  const [ inviteImporterProps, setInviteImporterProps ] = useState(defaultInviteImporterProps);
-  // One can pass the original contracts CreateEvent
-  function showInviteImporter(asset : Network.CreateEvent) {
-    async function onClose(state : InviteImporter | null) {
-      setInviteImporterProps({ ...defaultInviteImporterProps, open: false});
-      await ledger.exercise(Network.InviteImporter, asset.contractId, state);
-    };
-    setInviteImporterProps({ ...defaultInviteImporterProps, open: true, onClose})
-  };
-
-
-  const defaultAcceptExporterInvitationProps : InputDialogProps<AcceptExporterInvitation> = {
-    open: false,
-    title: "Invite Customs Gua",
-    defaultValue: { customsGua : "" },
-    fields: {
-      customsGua : {
-        label: "customs Gua",
-        type: "text" }},
-    onClose: async function() {}
-  };
-
-  const [ acceptExporterInvitationProps, setAcceptExporterInvitationProps ] = useState(defaultAcceptExporterInvitationProps);
-  // One can pass the original contracts CreateEvent
-  function showAcceptExporterInvitation(asset : ExporterInvitation.CreateEvent) {
-    async function onClose(state : AcceptExporterInvitation | null) {
-      setAcceptExporterInvitationProps({ ...defaultAcceptExporterInvitationProps, open: false});
-      await ledger.exercise(ExporterInvitation.AcceptExporterInvitation, asset.contractId, state);
-    };
-    setAcceptExporterInvitationProps({ ...defaultAcceptExporterInvitationProps, open: true, onClose})
+    setAcceptRequestProps({ ...defaultAcceptRequestProps, open: true, onClose})
   };
   // type UserSpecifiedAppraise = Pick<Appraise, "newValue">;
   // const today = (new Date()).toISOString().slice(0,10);
@@ -199,10 +199,10 @@ export default function Report() {
 
   return (
     <>
-      <InputDialog { ...inviteCustomsMarProps } />
-      <InputDialog { ...inviteCustomsGuaProps } />
-      <InputDialog { ...inviteExporterProps } />
-      <InputDialog { ...inviteImporterProps } />
+      {/* <InputDialog { ...inviteCustomsMarProps } /> */}
+      {/* <InputDialog { ...inviteCustomsGuaProps } /> */}
+      <InputDialog { ...inviteClientProps } />
+      {/* <InputDialog { ...inviteImporterProps } /> */}
       {/* <InputDialog { ...appraiseProps } />
       <InputDialog { ...newAssetProps } /> */}
       {/* <Button color="primary" size="small" className={classes.choiceButton} variant="contained" onClick={() => showNewAsset()}>
@@ -223,6 +223,7 @@ export default function Report() {
         <TableBody>
           {assets.map(a => (
             <TableRow key={a.contractId} className={classes.tableRow}>
+              <button>test</button>
               {/* <TableCell key={0} className={classes.tableCell}>{a.payload.issuer}</TableCell>
               <TableCell key={1} className={classes.tableCell}>{a.payload.owner}</TableCell>
               <TableCell key={2} className={classes.tableCell}>{a.payload.name}</TableCell>
@@ -232,10 +233,10 @@ export default function Report() {
                 <Button color="primary" size="small" className={classes.choiceButton} variant="contained" disabled={a.payload.owner !== party} onClick={() => showGive(a)}>Give</Button>
               </TableCell> */}
               <TableCell key={6} className={classes.tableCellButton}>
-                <Button color="primary" size="small" className={classes.choiceButton} variant="contained" disabled={a.payload.operator !== party} onClick={() => showInviteCustomsMar(a)}>InviteCustomsMar</Button>
-                <Button color="primary" size="small" className={classes.choiceButton} variant="contained" disabled={a.payload.operator !== party} onClick={() => showInviteCustomsGua(a)}>InviteCustomsGua</Button>
-                <Button color="primary" size="small" className={classes.choiceButton} variant="contained" disabled={a.payload.operator !== party} onClick={() => showInviteExporter(a)}>InviteExporter</Button>
-                <Button color="primary" size="small" className={classes.choiceButton} variant="contained" disabled={a.payload.operator !== party} onClick={() => showInviteImporter(a)}>InviteImporter</Button>
+                {/* <Button color="primary" size="small" className={classes.choiceButton} variant="contained" disabled={a.payload.operator !== party} onClick={() => showInviteCustomsMar(a)}>InviteCustomsMar</Button> */}
+                {/* <Button color="primary" size="small" className={classes.choiceButton} variant="contained" disabled={a.payload.operator !== party} onClick={() => showInviteCustomsGua(a)}>InviteCustomsGua</Button> */}
+                <Button color="primary" size="small" className={classes.choiceButton} variant="contained" disabled={a.payload.operator !== party} onClick={() => showInviteClient(a)}>InviteClient</Button>
+                {/* <Button color="primary" size="small" className={classes.choiceButton} variant="contained" >InviteImporter</Button> */}
 
               </TableCell>
             </TableRow>
@@ -244,7 +245,7 @@ export default function Report() {
       </Table>
     
       
-      <AlertDialog { ...acceptExporterInvitationProps } />  
+      {/* <AlertDialog { ...AcceptRequestProps } />  
       <Table size="small">
         <TableHead>
           <TableRow className={classes.tableRow}>   
@@ -255,12 +256,12 @@ export default function Report() {
           {assetsb.map(b => (
             <TableRow key={b.contractId} className={classes.tableRow}>
               <TableCell key={6} className={classes.tableCellButton}>
-              <Button color="primary" size="small" className={classes.choiceButton} variant="contained" disabled={b.payload.exporter !== party} onClick={() => showAcceptExporterInvitation(b)}>AcceptExporterInvitation</Button>
+              <Button color="primary" size="small" className={classes.choiceButton} variant="contained" disabled={b.payload.client !== party} onClick={() => showAcceptRequest(b)}>AcceptRequest</Button>
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
-      </Table>
+      </Table> */}
     </>
   );
 }

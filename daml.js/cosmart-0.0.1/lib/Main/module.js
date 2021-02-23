@@ -12,15 +12,16 @@ var damlTypes = require('@daml/types');
 /* eslint-disable-next-line no-unused-vars */
 var damlLedger = require('@daml/ledger');
 
+var pkg40f452260bef3f29dede136108fc08a88d5a5250310281067087da6f0baddff7 = require('@daml.js/40f452260bef3f29dede136108fc08a88d5a5250310281067087da6f0baddff7');
 var pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662 = require('@daml.js/d14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662');
 
 
-exports.ReleasedCertificate = {
-  templateId: 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:ReleasedCertificate',
+exports.JudgeProfile = {
+  templateId: '2f44cb3c87b95e01f8db50b0c7aca53f58d085307ac4884f1f69be2e3e713ddf:Main:JudgeProfile',
   keyDecoder: damlTypes.lazyMemo(function () { return jtv.constant(undefined); }),
-  decoder: damlTypes.lazyMemo(function () { return jtv.object({coTemplate: exports.CertificateOfOrigin.decoder, customsGua: damlTypes.Party.decoder, importer: damlTypes.Party.decoder, }); }),
+  decoder: damlTypes.lazyMemo(function () { return jtv.object({judge: damlTypes.Party.decoder, first: damlTypes.Text.decoder, last: damlTypes.Text.decoder, email: damlTypes.Text.decoder, }); }),
   Archive: {
-    template: function () { return exports.ReleasedCertificate; },
+    template: function () { return exports.JudgeProfile; },
     choiceName: 'Archive',
     argumentDecoder: damlTypes.lazyMemo(function () { return pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive.decoder; }),
     resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.Unit.decoder; }),
@@ -28,481 +29,496 @@ exports.ReleasedCertificate = {
 };
 
 
-damlTypes.registerTemplate(exports.ReleasedCertificate);
+damlTypes.registerTemplate(exports.JudgeProfile);
 
 
 
-exports.SendSignatoryConfirmation = {
+exports.ParticipantProfile = {
+  templateId: '2f44cb3c87b95e01f8db50b0c7aca53f58d085307ac4884f1f69be2e3e713ddf:Main:ParticipantProfile',
+  keyDecoder: damlTypes.lazyMemo(function () { return jtv.constant(undefined); }),
+  decoder: damlTypes.lazyMemo(function () { return jtv.object({participant: damlTypes.Party.decoder, first: damlTypes.Text.decoder, last: damlTypes.Text.decoder, email: damlTypes.Text.decoder, }); }),
+  Archive: {
+    template: function () { return exports.ParticipantProfile; },
+    choiceName: 'Archive',
+    argumentDecoder: damlTypes.lazyMemo(function () { return pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive.decoder; }),
+    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.Unit.decoder; }),
+  },
+};
+
+
+damlTypes.registerTemplate(exports.ParticipantProfile);
+
+
+
+exports.ClientProfile = {
+  templateId: '2f44cb3c87b95e01f8db50b0c7aca53f58d085307ac4884f1f69be2e3e713ddf:Main:ClientProfile',
+  keyDecoder: damlTypes.lazyMemo(function () { return jtv.constant(undefined); }),
+  decoder: damlTypes.lazyMemo(function () { return jtv.object({client: damlTypes.Party.decoder, first: damlTypes.Text.decoder, last: damlTypes.Text.decoder, email: damlTypes.Text.decoder, }); }),
+  Archive: {
+    template: function () { return exports.ClientProfile; },
+    choiceName: 'Archive',
+    argumentDecoder: damlTypes.lazyMemo(function () { return pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive.decoder; }),
+    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.Unit.decoder; }),
+  },
+};
+
+
+damlTypes.registerTemplate(exports.ClientProfile);
+
+
+
+exports.AddTeammate = {
   decoder: damlTypes.lazyMemo(function () { return jtv.object({}); }),
 };
 
 
 
-exports.RenconciliationCertificate = {
-  templateId: 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:RenconciliationCertificate',
+exports.AddUpdateSubmission = {
+  decoder: damlTypes.lazyMemo(function () { return jtv.object({newDesc: damlTypes.Text.decoder, newName: damlTypes.Text.decoder, newChallengeName: damlTypes.Text.decoder, }); }),
+};
+
+
+
+exports.ParticipantSubmission = {
+  templateId: '2f44cb3c87b95e01f8db50b0c7aca53f58d085307ac4884f1f69be2e3e713ddf:Main:ParticipantSubmission',
   keyDecoder: damlTypes.lazyMemo(function () { return jtv.constant(undefined); }),
-  decoder: damlTypes.lazyMemo(function () { return jtv.object({coTemplate: exports.CertificateOfOrigin.decoder, customsGua: damlTypes.Party.decoder, importer: damlTypes.Party.decoder, }); }),
+  decoder: damlTypes.lazyMemo(function () { return jtv.object({participant: damlTypes.Party.decoder, client: damlTypes.Party.decoder, name: damlTypes.Text.decoder, desc: damlTypes.Text.decoder, submission: damlTypes.Text.decoder, challengeName: damlTypes.Text.decoder, participants: damlTypes.List(damlTypes.Party).decoder, }); }),
   Archive: {
-    template: function () { return exports.RenconciliationCertificate; },
+    template: function () { return exports.ParticipantSubmission; },
     choiceName: 'Archive',
     argumentDecoder: damlTypes.lazyMemo(function () { return pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive.decoder; }),
     resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.Unit.decoder; }),
   },
-  SendSignatoryConfirmation: {
-    template: function () { return exports.RenconciliationCertificate; },
-    choiceName: 'SendSignatoryConfirmation',
-    argumentDecoder: damlTypes.lazyMemo(function () { return exports.SendSignatoryConfirmation.decoder; }),
-    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.ReleasedCertificate).decoder; }),
+  AddUpdateSubmission: {
+    template: function () { return exports.ParticipantSubmission; },
+    choiceName: 'AddUpdateSubmission',
+    argumentDecoder: damlTypes.lazyMemo(function () { return exports.AddUpdateSubmission.decoder; }),
+    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.ParticipantSubmission).decoder; }),
+  },
+  AddTeammate: {
+    template: function () { return exports.ParticipantSubmission; },
+    choiceName: 'AddTeammate',
+    argumentDecoder: damlTypes.lazyMemo(function () { return exports.AddTeammate.decoder; }),
+    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.ParticipantSubmission).decoder; }),
   },
 };
 
 
-damlTypes.registerTemplate(exports.RenconciliationCertificate);
+damlTypes.registerTemplate(exports.ParticipantSubmission);
 
 
 
-exports.SendThirdConfirmation = {
-  decoder: damlTypes.lazyMemo(function () { return jtv.object({importinfo: exports.Importinfo.decoder, }); }),
+exports.AddEditSubmission = {
+  decoder: damlTypes.lazyMemo(function () { return jtv.object({participant: damlTypes.Party.decoder, subName: damlTypes.Text.decoder, subDesc: damlTypes.Text.decoder, submission: damlTypes.Text.decoder, challengeName: damlTypes.Text.decoder, }); }),
 };
 
 
 
-exports.RequestCertificate = {
-  templateId: 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:RequestCertificate',
-  keyDecoder: damlTypes.lazyMemo(function () { return jtv.constant(undefined); }),
-  decoder: damlTypes.lazyMemo(function () { return jtv.object({coTemplate: exports.CertificateOfOrigin.decoder, customsGua: damlTypes.Party.decoder, importer: damlTypes.Party.decoder, }); }),
+exports.AddJudge = {
+  decoder: damlTypes.lazyMemo(function () { return jtv.object({judge: damlTypes.Party.decoder, }); }),
+};
+
+
+
+exports.AddParticipant = {
+  decoder: damlTypes.lazyMemo(function () { return jtv.object({participant: damlTypes.Party.decoder, }); }),
+};
+
+
+
+exports.AddUpdateChallenge = {
+  decoder: damlTypes.lazyMemo(function () { return jtv.object({challenge: exports.Challenge.decoder, }); }),
+};
+
+
+
+exports.AddUpdateCriteria = {
+  decoder: damlTypes.lazyMemo(function () { return jtv.object({newCriteria: damlTypes.Text.decoder, }); }),
+};
+
+
+
+exports.AddUpdateDescription = {
+  decoder: damlTypes.lazyMemo(function () { return jtv.object({newDesc: damlTypes.Text.decoder, }); }),
+};
+
+
+
+exports.ClientProject = {
+  templateId: '2f44cb3c87b95e01f8db50b0c7aca53f58d085307ac4884f1f69be2e3e713ddf:Main:ClientProject',
+  keyDecoder: damlTypes.lazyMemo(function () { return damlTypes.lazyMemo(function () { return pkg40f452260bef3f29dede136108fc08a88d5a5250310281067087da6f0baddff7.DA.Types.Tuple2(damlTypes.Party, damlTypes.Text).decoder; }); }),
+  decoder: damlTypes.lazyMemo(function () { return jtv.object({client: damlTypes.Party.decoder, operator: damlTypes.Party.decoder, projectId: damlTypes.Text.decoder, name: damlTypes.Text.decoder, desc: damlTypes.Text.decoder, criteria: damlTypes.Text.decoder, challenges: damlTypes.List(exports.Challenge).decoder, participants: damlTypes.List(damlTypes.Party).decoder, judges: damlTypes.List(damlTypes.Party).decoder, projects: damlTypes.List(exports.ParticipantSubmission).decoder, }); }),
   Archive: {
-    template: function () { return exports.RequestCertificate; },
+    template: function () { return exports.ClientProject; },
     choiceName: 'Archive',
     argumentDecoder: damlTypes.lazyMemo(function () { return pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive.decoder; }),
     resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.Unit.decoder; }),
   },
-  SendThirdConfirmation: {
-    template: function () { return exports.RequestCertificate; },
-    choiceName: 'SendThirdConfirmation',
-    argumentDecoder: damlTypes.lazyMemo(function () { return exports.SendThirdConfirmation.decoder; }),
-    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.RenconciliationCertificate).decoder; }),
+  AddUpdateDescription: {
+    template: function () { return exports.ClientProject; },
+    choiceName: 'AddUpdateDescription',
+    argumentDecoder: damlTypes.lazyMemo(function () { return exports.AddUpdateDescription.decoder; }),
+    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.ClientProject).decoder; }),
+  },
+  AddUpdateCriteria: {
+    template: function () { return exports.ClientProject; },
+    choiceName: 'AddUpdateCriteria',
+    argumentDecoder: damlTypes.lazyMemo(function () { return exports.AddUpdateCriteria.decoder; }),
+    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.ClientProject).decoder; }),
+  },
+  AddUpdateChallenge: {
+    template: function () { return exports.ClientProject; },
+    choiceName: 'AddUpdateChallenge',
+    argumentDecoder: damlTypes.lazyMemo(function () { return exports.AddUpdateChallenge.decoder; }),
+    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.ClientProject).decoder; }),
+  },
+  AddParticipant: {
+    template: function () { return exports.ClientProject; },
+    choiceName: 'AddParticipant',
+    argumentDecoder: damlTypes.lazyMemo(function () { return exports.AddParticipant.decoder; }),
+    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.ClientProject).decoder; }),
+  },
+  AddJudge: {
+    template: function () { return exports.ClientProject; },
+    choiceName: 'AddJudge',
+    argumentDecoder: damlTypes.lazyMemo(function () { return exports.AddJudge.decoder; }),
+    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.ClientProject).decoder; }),
+  },
+  AddEditSubmission: {
+    template: function () { return exports.ClientProject; },
+    choiceName: 'AddEditSubmission',
+    argumentDecoder: damlTypes.lazyMemo(function () { return exports.AddEditSubmission.decoder; }),
+    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.ClientProject).decoder; }),
   },
 };
 
 
-damlTypes.registerTemplate(exports.RequestCertificate);
+damlTypes.registerTemplate(exports.ClientProject);
 
 
 
-exports.RequestSecondConfirmation = {
+exports.CreateProject = {
+  decoder: damlTypes.lazyMemo(function () { return jtv.object({name: damlTypes.Text.decoder, projectId: damlTypes.Text.decoder, }); }),
+};
+
+
+
+exports.AddEditCliProfile = {
+  decoder: damlTypes.lazyMemo(function () { return jtv.object({first: damlTypes.Text.decoder, last: damlTypes.Text.decoder, email: damlTypes.Text.decoder, }); }),
+};
+
+
+
+exports.ClientRole = {
+  templateId: '2f44cb3c87b95e01f8db50b0c7aca53f58d085307ac4884f1f69be2e3e713ddf:Main:ClientRole',
+  keyDecoder: damlTypes.lazyMemo(function () { return jtv.constant(undefined); }),
+  decoder: damlTypes.lazyMemo(function () { return jtv.object({client: damlTypes.Party.decoder, operator: damlTypes.Party.decoder, }); }),
+  Archive: {
+    template: function () { return exports.ClientRole; },
+    choiceName: 'Archive',
+    argumentDecoder: damlTypes.lazyMemo(function () { return pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive.decoder; }),
+    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.Unit.decoder; }),
+  },
+  AddEditCliProfile: {
+    template: function () { return exports.ClientRole; },
+    choiceName: 'AddEditCliProfile',
+    argumentDecoder: damlTypes.lazyMemo(function () { return exports.AddEditCliProfile.decoder; }),
+    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.ClientProfile).decoder; }),
+  },
+  CreateProject: {
+    template: function () { return exports.ClientRole; },
+    choiceName: 'CreateProject',
+    argumentDecoder: damlTypes.lazyMemo(function () { return exports.CreateProject.decoder; }),
+    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.ClientProject).decoder; }),
+  },
+};
+
+
+damlTypes.registerTemplate(exports.ClientRole);
+
+
+
+exports.AcceptRequest = {
   decoder: damlTypes.lazyMemo(function () { return jtv.object({}); }),
 };
 
 
 
-exports.ReleaseCo = {
+exports.ClientInvitation = {
+  templateId: '2f44cb3c87b95e01f8db50b0c7aca53f58d085307ac4884f1f69be2e3e713ddf:Main:ClientInvitation',
+  keyDecoder: damlTypes.lazyMemo(function () { return jtv.constant(undefined); }),
+  decoder: damlTypes.lazyMemo(function () { return jtv.object({client: damlTypes.Party.decoder, operator: damlTypes.Party.decoder, }); }),
+  Archive: {
+    template: function () { return exports.ClientInvitation; },
+    choiceName: 'Archive',
+    argumentDecoder: damlTypes.lazyMemo(function () { return pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive.decoder; }),
+    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.Unit.decoder; }),
+  },
+  AcceptRequest: {
+    template: function () { return exports.ClientInvitation; },
+    choiceName: 'AcceptRequest',
+    argumentDecoder: damlTypes.lazyMemo(function () { return exports.AcceptRequest.decoder; }),
+    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.ClientRole).decoder; }),
+  },
+};
+
+
+damlTypes.registerTemplate(exports.ClientInvitation);
+
+
+
+exports.AddParticipantToProject = {
   decoder: damlTypes.lazyMemo(function () { return jtv.object({}); }),
 };
 
 
 
-exports.ImportDeclaration = {
-  templateId: 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:ImportDeclaration',
+exports.RequestToJoinProject = {
+  templateId: '2f44cb3c87b95e01f8db50b0c7aca53f58d085307ac4884f1f69be2e3e713ddf:Main:RequestToJoinProject',
   keyDecoder: damlTypes.lazyMemo(function () { return jtv.constant(undefined); }),
-  decoder: damlTypes.lazyMemo(function () { return jtv.object({coTemplate: exports.CertificateOfOrigin.decoder, customsGua: damlTypes.Party.decoder, importinfo: exports.Importinfo.decoder, importer: damlTypes.Party.decoder, }); }),
+  decoder: damlTypes.lazyMemo(function () { return jtv.object({participant: damlTypes.Party.decoder, client: damlTypes.Party.decoder, operator: damlTypes.Party.decoder, projectId: damlTypes.Text.decoder, }); }),
   Archive: {
-    template: function () { return exports.ImportDeclaration; },
+    template: function () { return exports.RequestToJoinProject; },
     choiceName: 'Archive',
     argumentDecoder: damlTypes.lazyMemo(function () { return pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive.decoder; }),
     resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.Unit.decoder; }),
   },
-  ReleaseCo: {
-    template: function () { return exports.ImportDeclaration; },
-    choiceName: 'ReleaseCo',
-    argumentDecoder: damlTypes.lazyMemo(function () { return exports.ReleaseCo.decoder; }),
-    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.ReleasedCertificate).decoder; }),
-  },
-  RequestSecondConfirmation: {
-    template: function () { return exports.ImportDeclaration; },
-    choiceName: 'RequestSecondConfirmation',
-    argumentDecoder: damlTypes.lazyMemo(function () { return exports.RequestSecondConfirmation.decoder; }),
-    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.RequestCertificate).decoder; }),
+  AddParticipantToProject: {
+    template: function () { return exports.RequestToJoinProject; },
+    choiceName: 'AddParticipantToProject',
+    argumentDecoder: damlTypes.lazyMemo(function () { return exports.AddParticipantToProject.decoder; }),
+    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.ClientProject).decoder; }),
   },
 };
 
 
-damlTypes.registerTemplate(exports.ImportDeclaration);
+damlTypes.registerTemplate(exports.RequestToJoinProject);
 
 
 
-exports.SendImportDeclaration = {
-  decoder: damlTypes.lazyMemo(function () { return jtv.object({customsGua: damlTypes.Party.decoder, importinfo: exports.Importinfo.decoder, }); }),
+exports.RegisterForProject = {
+  decoder: damlTypes.lazyMemo(function () { return jtv.object({projectId: damlTypes.Text.decoder, client: damlTypes.Party.decoder, }); }),
 };
 
 
 
-exports.CoForImporter = {
-  templateId: 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:CoForImporter',
+exports.AddParProfile = {
+  decoder: damlTypes.lazyMemo(function () { return jtv.object({first: damlTypes.Text.decoder, last: damlTypes.Text.decoder, email: damlTypes.Text.decoder, }); }),
+};
+
+
+
+exports.ParticipantRole = {
+  templateId: '2f44cb3c87b95e01f8db50b0c7aca53f58d085307ac4884f1f69be2e3e713ddf:Main:ParticipantRole',
   keyDecoder: damlTypes.lazyMemo(function () { return jtv.constant(undefined); }),
-  decoder: damlTypes.lazyMemo(function () { return jtv.object({coTemplate: exports.CertificateOfOrigin.decoder, importer: damlTypes.Party.decoder, }); }),
+  decoder: damlTypes.lazyMemo(function () { return jtv.object({participant: damlTypes.Party.decoder, operator: damlTypes.Party.decoder, }); }),
   Archive: {
-    template: function () { return exports.CoForImporter; },
+    template: function () { return exports.ParticipantRole; },
     choiceName: 'Archive',
     argumentDecoder: damlTypes.lazyMemo(function () { return pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive.decoder; }),
     resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.Unit.decoder; }),
   },
-  SendImportDeclaration: {
-    template: function () { return exports.CoForImporter; },
-    choiceName: 'SendImportDeclaration',
-    argumentDecoder: damlTypes.lazyMemo(function () { return exports.SendImportDeclaration.decoder; }),
-    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.ImportDeclaration).decoder; }),
+  AddParProfile: {
+    template: function () { return exports.ParticipantRole; },
+    choiceName: 'AddParProfile',
+    argumentDecoder: damlTypes.lazyMemo(function () { return exports.AddParProfile.decoder; }),
+    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.ParticipantProfile).decoder; }),
+  },
+  RegisterForProject: {
+    template: function () { return exports.ParticipantRole; },
+    choiceName: 'RegisterForProject',
+    argumentDecoder: damlTypes.lazyMemo(function () { return exports.RegisterForProject.decoder; }),
+    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.RequestToJoinProject).decoder; }),
   },
 };
 
 
-damlTypes.registerTemplate(exports.CoForImporter);
+damlTypes.registerTemplate(exports.ParticipantRole);
 
 
 
-exports.SendCo = {
-  decoder: damlTypes.lazyMemo(function () { return jtv.object({importer: damlTypes.Party.decoder, }); }),
-};
-
-
-
-exports.InspectCertificate = {
-  templateId: 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:InspectCertificate',
-  keyDecoder: damlTypes.lazyMemo(function () { return jtv.constant(undefined); }),
-  decoder: damlTypes.lazyMemo(function () { return jtv.object({coTemplate: exports.CertificateOfOrigin.decoder, }); }),
-  Archive: {
-    template: function () { return exports.InspectCertificate; },
-    choiceName: 'Archive',
-    argumentDecoder: damlTypes.lazyMemo(function () { return pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive.decoder; }),
-    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.Unit.decoder; }),
-  },
-  SendCo: {
-    template: function () { return exports.InspectCertificate; },
-    choiceName: 'SendCo',
-    argumentDecoder: damlTypes.lazyMemo(function () { return exports.SendCo.decoder; }),
-    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.CoForImporter).decoder; }),
-  },
-};
-
-
-damlTypes.registerTemplate(exports.InspectCertificate);
-
-
-
-exports.ConfirmCo = {
+exports.AcceptParticipantRequest = {
   decoder: damlTypes.lazyMemo(function () { return jtv.object({}); }),
 };
 
 
 
-exports.CertificateOfOrigin = {
-  templateId: 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:CertificateOfOrigin',
+exports.ParticipantInvitation = {
+  templateId: '2f44cb3c87b95e01f8db50b0c7aca53f58d085307ac4884f1f69be2e3e713ddf:Main:ParticipantInvitation',
   keyDecoder: damlTypes.lazyMemo(function () { return jtv.constant(undefined); }),
-  decoder: damlTypes.lazyMemo(function () { return jtv.object({exporter: damlTypes.Party.decoder, customsMar: damlTypes.Party.decoder, }); }),
+  decoder: damlTypes.lazyMemo(function () { return jtv.object({participant: damlTypes.Party.decoder, operator: damlTypes.Party.decoder, }); }),
   Archive: {
-    template: function () { return exports.CertificateOfOrigin; },
+    template: function () { return exports.ParticipantInvitation; },
     choiceName: 'Archive',
     argumentDecoder: damlTypes.lazyMemo(function () { return pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive.decoder; }),
     resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.Unit.decoder; }),
   },
-  ConfirmCo: {
-    template: function () { return exports.CertificateOfOrigin; },
-    choiceName: 'ConfirmCo',
-    argumentDecoder: damlTypes.lazyMemo(function () { return exports.ConfirmCo.decoder; }),
-    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.InspectCertificate).decoder; }),
+  AcceptParticipantRequest: {
+    template: function () { return exports.ParticipantInvitation; },
+    choiceName: 'AcceptParticipantRequest',
+    argumentDecoder: damlTypes.lazyMemo(function () { return exports.AcceptParticipantRequest.decoder; }),
+    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.ParticipantRole).decoder; }),
   },
 };
 
 
-damlTypes.registerTemplate(exports.CertificateOfOrigin);
+damlTypes.registerTemplate(exports.ParticipantInvitation);
 
 
 
-exports.CreateCO = {
-  decoder: damlTypes.lazyMemo(function () { return jtv.object({coData: exports.COData.decoder, customsMar: damlTypes.Party.decoder, }); }),
-};
-
-
-
-exports.ExporterRole = {
-  templateId: 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:ExporterRole',
-  keyDecoder: damlTypes.lazyMemo(function () { return jtv.constant(undefined); }),
-  decoder: damlTypes.lazyMemo(function () { return jtv.object({operator: damlTypes.Party.decoder, exporter: damlTypes.Party.decoder, }); }),
-  Archive: {
-    template: function () { return exports.ExporterRole; },
-    choiceName: 'Archive',
-    argumentDecoder: damlTypes.lazyMemo(function () { return pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive.decoder; }),
-    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.Unit.decoder; }),
-  },
-  CreateCO: {
-    template: function () { return exports.ExporterRole; },
-    choiceName: 'CreateCO',
-    argumentDecoder: damlTypes.lazyMemo(function () { return exports.CreateCO.decoder; }),
-    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.CertificateOfOrigin).decoder; }),
-  },
-};
-
-
-damlTypes.registerTemplate(exports.ExporterRole);
-
-
-
-exports.AcceptExporterInvitation = {
+exports.AddJudgeToProject = {
   decoder: damlTypes.lazyMemo(function () { return jtv.object({}); }),
 };
 
 
 
-exports.ExporterInvitation = {
-  templateId: 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:ExporterInvitation',
+exports.RequestToJudgeProject = {
+  templateId: '2f44cb3c87b95e01f8db50b0c7aca53f58d085307ac4884f1f69be2e3e713ddf:Main:RequestToJudgeProject',
   keyDecoder: damlTypes.lazyMemo(function () { return jtv.constant(undefined); }),
-  decoder: damlTypes.lazyMemo(function () { return jtv.object({operator: damlTypes.Party.decoder, exporter: damlTypes.Party.decoder, }); }),
+  decoder: damlTypes.lazyMemo(function () { return jtv.object({judge: damlTypes.Party.decoder, client: damlTypes.Party.decoder, operator: damlTypes.Party.decoder, projectId: damlTypes.Text.decoder, }); }),
   Archive: {
-    template: function () { return exports.ExporterInvitation; },
+    template: function () { return exports.RequestToJudgeProject; },
     choiceName: 'Archive',
     argumentDecoder: damlTypes.lazyMemo(function () { return pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive.decoder; }),
     resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.Unit.decoder; }),
   },
-  AcceptExporterInvitation: {
-    template: function () { return exports.ExporterInvitation; },
-    choiceName: 'AcceptExporterInvitation',
-    argumentDecoder: damlTypes.lazyMemo(function () { return exports.AcceptExporterInvitation.decoder; }),
-    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.ExporterRole).decoder; }),
+  AddJudgeToProject: {
+    template: function () { return exports.RequestToJudgeProject; },
+    choiceName: 'AddJudgeToProject',
+    argumentDecoder: damlTypes.lazyMemo(function () { return exports.AddJudgeToProject.decoder; }),
+    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.ClientProject).decoder; }),
   },
 };
 
 
-damlTypes.registerTemplate(exports.ExporterInvitation);
+damlTypes.registerTemplate(exports.RequestToJudgeProject);
 
 
 
-exports.ImporterRole = {
-  templateId: 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:ImporterRole',
+exports.JudgeForProject = {
+  decoder: damlTypes.lazyMemo(function () { return jtv.object({projectId: damlTypes.Text.decoder, client: damlTypes.Party.decoder, }); }),
+};
+
+
+
+exports.AddEditJudProfile = {
+  decoder: damlTypes.lazyMemo(function () { return jtv.object({first: damlTypes.Text.decoder, last: damlTypes.Text.decoder, email: damlTypes.Text.decoder, }); }),
+};
+
+
+
+exports.JudgeRole = {
+  templateId: '2f44cb3c87b95e01f8db50b0c7aca53f58d085307ac4884f1f69be2e3e713ddf:Main:JudgeRole',
   keyDecoder: damlTypes.lazyMemo(function () { return jtv.constant(undefined); }),
-  decoder: damlTypes.lazyMemo(function () { return jtv.object({operator: damlTypes.Party.decoder, importer: damlTypes.Party.decoder, }); }),
+  decoder: damlTypes.lazyMemo(function () { return jtv.object({judge: damlTypes.Party.decoder, operator: damlTypes.Party.decoder, }); }),
   Archive: {
-    template: function () { return exports.ImporterRole; },
+    template: function () { return exports.JudgeRole; },
     choiceName: 'Archive',
     argumentDecoder: damlTypes.lazyMemo(function () { return pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive.decoder; }),
     resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.Unit.decoder; }),
   },
+  AddEditJudProfile: {
+    template: function () { return exports.JudgeRole; },
+    choiceName: 'AddEditJudProfile',
+    argumentDecoder: damlTypes.lazyMemo(function () { return exports.AddEditJudProfile.decoder; }),
+    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.JudgeProfile).decoder; }),
+  },
+  JudgeForProject: {
+    template: function () { return exports.JudgeRole; },
+    choiceName: 'JudgeForProject',
+    argumentDecoder: damlTypes.lazyMemo(function () { return exports.JudgeForProject.decoder; }),
+    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.RequestToJudgeProject).decoder; }),
+  },
 };
 
 
-damlTypes.registerTemplate(exports.ImporterRole);
+damlTypes.registerTemplate(exports.JudgeRole);
 
 
 
-exports.AcceptImporterInvitation = {
+exports.AcceptjudgeRequest = {
   decoder: damlTypes.lazyMemo(function () { return jtv.object({}); }),
 };
 
 
 
-exports.ImporterInvitation = {
-  templateId: 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:ImporterInvitation',
+exports.JudgeInvitation = {
+  templateId: '2f44cb3c87b95e01f8db50b0c7aca53f58d085307ac4884f1f69be2e3e713ddf:Main:JudgeInvitation',
   keyDecoder: damlTypes.lazyMemo(function () { return jtv.constant(undefined); }),
-  decoder: damlTypes.lazyMemo(function () { return jtv.object({operator: damlTypes.Party.decoder, importer: damlTypes.Party.decoder, }); }),
+  decoder: damlTypes.lazyMemo(function () { return jtv.object({judge: damlTypes.Party.decoder, operator: damlTypes.Party.decoder, }); }),
   Archive: {
-    template: function () { return exports.ImporterInvitation; },
+    template: function () { return exports.JudgeInvitation; },
     choiceName: 'Archive',
     argumentDecoder: damlTypes.lazyMemo(function () { return pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive.decoder; }),
     resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.Unit.decoder; }),
   },
-  AcceptImporterInvitation: {
-    template: function () { return exports.ImporterInvitation; },
-    choiceName: 'AcceptImporterInvitation',
-    argumentDecoder: damlTypes.lazyMemo(function () { return exports.AcceptImporterInvitation.decoder; }),
-    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.ImporterRole).decoder; }),
+  AcceptjudgeRequest: {
+    template: function () { return exports.JudgeInvitation; },
+    choiceName: 'AcceptjudgeRequest',
+    argumentDecoder: damlTypes.lazyMemo(function () { return exports.AcceptjudgeRequest.decoder; }),
+    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.JudgeRole).decoder; }),
   },
 };
 
 
-damlTypes.registerTemplate(exports.ImporterInvitation);
+damlTypes.registerTemplate(exports.JudgeInvitation);
 
 
 
-exports.CustomsGuaRole = {
-  templateId: 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:CustomsGuaRole',
-  keyDecoder: damlTypes.lazyMemo(function () { return jtv.constant(undefined); }),
-  decoder: damlTypes.lazyMemo(function () { return jtv.object({operator: damlTypes.Party.decoder, customsGua: damlTypes.Party.decoder, }); }),
-  Archive: {
-    template: function () { return exports.CustomsGuaRole; },
-    choiceName: 'Archive',
-    argumentDecoder: damlTypes.lazyMemo(function () { return pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive.decoder; }),
-    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.Unit.decoder; }),
-  },
-};
-
-
-damlTypes.registerTemplate(exports.CustomsGuaRole);
-
-
-
-exports.AcceptCustomsGuaInvitation = {
-  decoder: damlTypes.lazyMemo(function () { return jtv.object({}); }),
+exports.InviteJudge = {
+  decoder: damlTypes.lazyMemo(function () { return jtv.object({judge: damlTypes.Party.decoder, }); }),
 };
 
 
 
-exports.CustomsGuaInvitation = {
-  templateId: 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:CustomsGuaInvitation',
-  keyDecoder: damlTypes.lazyMemo(function () { return jtv.constant(undefined); }),
-  decoder: damlTypes.lazyMemo(function () { return jtv.object({operator: damlTypes.Party.decoder, customsGua: damlTypes.Party.decoder, }); }),
-  Archive: {
-    template: function () { return exports.CustomsGuaInvitation; },
-    choiceName: 'Archive',
-    argumentDecoder: damlTypes.lazyMemo(function () { return pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive.decoder; }),
-    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.Unit.decoder; }),
-  },
-  AcceptCustomsGuaInvitation: {
-    template: function () { return exports.CustomsGuaInvitation; },
-    choiceName: 'AcceptCustomsGuaInvitation',
-    argumentDecoder: damlTypes.lazyMemo(function () { return exports.AcceptCustomsGuaInvitation.decoder; }),
-    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.CustomsGuaRole).decoder; }),
-  },
-};
-
-
-damlTypes.registerTemplate(exports.CustomsGuaInvitation);
-
-
-
-exports.CustomsMarRole = {
-  templateId: 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:CustomsMarRole',
-  keyDecoder: damlTypes.lazyMemo(function () { return jtv.constant(undefined); }),
-  decoder: damlTypes.lazyMemo(function () { return jtv.object({operator: damlTypes.Party.decoder, customsMar: damlTypes.Party.decoder, }); }),
-  Archive: {
-    template: function () { return exports.CustomsMarRole; },
-    choiceName: 'Archive',
-    argumentDecoder: damlTypes.lazyMemo(function () { return pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive.decoder; }),
-    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.Unit.decoder; }),
-  },
-};
-
-
-damlTypes.registerTemplate(exports.CustomsMarRole);
-
-
-
-exports.AcceptCustomsMarInvitation = {
-  decoder: damlTypes.lazyMemo(function () { return jtv.object({}); }),
+exports.InviteParticipant = {
+  decoder: damlTypes.lazyMemo(function () { return jtv.object({participant: damlTypes.Party.decoder, }); }),
 };
 
 
 
-exports.CustomsMarInvitation = {
-  templateId: 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:CustomsMarInvitation',
-  keyDecoder: damlTypes.lazyMemo(function () { return jtv.constant(undefined); }),
-  decoder: damlTypes.lazyMemo(function () { return jtv.object({operator: damlTypes.Party.decoder, customsMar: damlTypes.Party.decoder, }); }),
-  Archive: {
-    template: function () { return exports.CustomsMarInvitation; },
-    choiceName: 'Archive',
-    argumentDecoder: damlTypes.lazyMemo(function () { return pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive.decoder; }),
-    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.Unit.decoder; }),
-  },
-  AcceptCustomsMarInvitation: {
-    template: function () { return exports.CustomsMarInvitation; },
-    choiceName: 'AcceptCustomsMarInvitation',
-    argumentDecoder: damlTypes.lazyMemo(function () { return exports.AcceptCustomsMarInvitation.decoder; }),
-    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.CustomsMarRole).decoder; }),
-  },
-};
-
-
-damlTypes.registerTemplate(exports.CustomsMarInvitation);
-
-
-
-exports.InviteCustomsGua = {
-  decoder: damlTypes.lazyMemo(function () { return jtv.object({customsGua: damlTypes.Party.decoder, }); }),
+exports.InviteClient = {
+  decoder: damlTypes.lazyMemo(function () { return jtv.object({client: damlTypes.Party.decoder, }); }),
 };
 
 
 
-exports.InviteImporter = {
-  decoder: damlTypes.lazyMemo(function () { return jtv.object({importer: damlTypes.Party.decoder, }); }),
-};
-
-
-
-exports.InviteExporter = {
-  decoder: damlTypes.lazyMemo(function () { return jtv.object({exporter: damlTypes.Party.decoder, }); }),
-};
-
-
-
-exports.InviteCustomsMar = {
-  decoder: damlTypes.lazyMemo(function () { return jtv.object({customsMar: damlTypes.Party.decoder, }); }),
-};
-
-
-
-exports.Network = {
-  templateId: 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:Network',
+exports.Platform = {
+  templateId: '2f44cb3c87b95e01f8db50b0c7aca53f58d085307ac4884f1f69be2e3e713ddf:Main:Platform',
   keyDecoder: damlTypes.lazyMemo(function () { return jtv.constant(undefined); }),
   decoder: damlTypes.lazyMemo(function () { return jtv.object({operator: damlTypes.Party.decoder, }); }),
   Archive: {
-    template: function () { return exports.Network; },
+    template: function () { return exports.Platform; },
     choiceName: 'Archive',
     argumentDecoder: damlTypes.lazyMemo(function () { return pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive.decoder; }),
     resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.Unit.decoder; }),
   },
-  InviteCustomsMar: {
-    template: function () { return exports.Network; },
-    choiceName: 'InviteCustomsMar',
-    argumentDecoder: damlTypes.lazyMemo(function () { return exports.InviteCustomsMar.decoder; }),
-    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.CustomsMarInvitation).decoder; }),
+  InviteClient: {
+    template: function () { return exports.Platform; },
+    choiceName: 'InviteClient',
+    argumentDecoder: damlTypes.lazyMemo(function () { return exports.InviteClient.decoder; }),
+    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.ClientInvitation).decoder; }),
   },
-  InviteExporter: {
-    template: function () { return exports.Network; },
-    choiceName: 'InviteExporter',
-    argumentDecoder: damlTypes.lazyMemo(function () { return exports.InviteExporter.decoder; }),
-    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.ExporterInvitation).decoder; }),
+  InviteParticipant: {
+    template: function () { return exports.Platform; },
+    choiceName: 'InviteParticipant',
+    argumentDecoder: damlTypes.lazyMemo(function () { return exports.InviteParticipant.decoder; }),
+    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.ParticipantInvitation).decoder; }),
   },
-  InviteImporter: {
-    template: function () { return exports.Network; },
-    choiceName: 'InviteImporter',
-    argumentDecoder: damlTypes.lazyMemo(function () { return exports.InviteImporter.decoder; }),
-    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.ImporterInvitation).decoder; }),
-  },
-  InviteCustomsGua: {
-    template: function () { return exports.Network; },
-    choiceName: 'InviteCustomsGua',
-    argumentDecoder: damlTypes.lazyMemo(function () { return exports.InviteCustomsGua.decoder; }),
-    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.CustomsGuaInvitation).decoder; }),
+  InviteJudge: {
+    template: function () { return exports.Platform; },
+    choiceName: 'InviteJudge',
+    argumentDecoder: damlTypes.lazyMemo(function () { return exports.InviteJudge.decoder; }),
+    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.ContractId(exports.JudgeInvitation).decoder; }),
   },
 };
 
 
-damlTypes.registerTemplate(exports.Network);
+damlTypes.registerTemplate(exports.Platform);
 
 
 
-exports.Announcement = {
-  templateId: 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:Announcement',
-  keyDecoder: damlTypes.lazyMemo(function () { return jtv.constant(undefined); }),
-  decoder: damlTypes.lazyMemo(function () { return jtv.object({user: damlTypes.Party.decoder, }); }),
-  Archive: {
-    template: function () { return exports.Announcement; },
-    choiceName: 'Archive',
-    argumentDecoder: damlTypes.lazyMemo(function () { return pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive.decoder; }),
-    resultDecoder: damlTypes.lazyMemo(function () { return damlTypes.Unit.decoder; }),
-  },
-};
-
-
-damlTypes.registerTemplate(exports.Announcement);
-
-
-
-exports.COData = {
-  decoder: damlTypes.lazyMemo(function () { return jtv.object({ref: damlTypes.Text.decoder, originCountry: damlTypes.Text.decoder, destinationCountry: damlTypes.Text.decoder, goods: damlTypes.Text.decoder, itemRef: damlTypes.Text.decoder, transportInfo: damlTypes.Text.decoder, certificateContent: damlTypes.Text.decoder, }); }),
-};
-
-
-
-exports.Importinfo = {
-  decoder: damlTypes.lazyMemo(function () { return jtv.object({quantity: damlTypes.Int.decoder, value: damlTypes.Numeric(10).decoder, }); }),
+exports.Challenge = {
+  decoder: damlTypes.lazyMemo(function () { return jtv.object({name: damlTypes.Text.decoder, prize: damlTypes.Text.decoder, }); }),
 };
 

@@ -7,509 +7,542 @@ import * as damlTypes from '@daml/types';
 /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 import * as damlLedger from '@daml/ledger';
 
+import * as pkg40f452260bef3f29dede136108fc08a88d5a5250310281067087da6f0baddff7 from '@daml.js/40f452260bef3f29dede136108fc08a88d5a5250310281067087da6f0baddff7';
 import * as pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662 from '@daml.js/d14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662';
 
-export declare type ReleasedCertificate = {
-  coTemplate: CertificateOfOrigin;
-  customsGua: damlTypes.Party;
-  importer: damlTypes.Party;
+export declare type JudgeProfile = {
+  judge: damlTypes.Party;
+  first: string;
+  last: string;
+  email: string;
 };
 
-export declare const ReleasedCertificate:
-  damlTypes.Template<ReleasedCertificate, undefined, 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:ReleasedCertificate'> & {
-  Archive: damlTypes.Choice<ReleasedCertificate, pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive, {}, undefined>;
+export declare const JudgeProfile:
+  damlTypes.Template<JudgeProfile, undefined, '2f44cb3c87b95e01f8db50b0c7aca53f58d085307ac4884f1f69be2e3e713ddf:Main:JudgeProfile'> & {
+  Archive: damlTypes.Choice<JudgeProfile, pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive, {}, undefined>;
 };
 
-export declare namespace ReleasedCertificate {
-  export type CreateEvent = damlLedger.CreateEvent<ReleasedCertificate, undefined, typeof ReleasedCertificate.templateId>
-  export type ArchiveEvent = damlLedger.ArchiveEvent<ReleasedCertificate, typeof ReleasedCertificate.templateId>
-  export type Event = damlLedger.Event<ReleasedCertificate, undefined, typeof ReleasedCertificate.templateId>
+export declare namespace JudgeProfile {
+  export type CreateEvent = damlLedger.CreateEvent<JudgeProfile, undefined, typeof JudgeProfile.templateId>
+  export type ArchiveEvent = damlLedger.ArchiveEvent<JudgeProfile, typeof JudgeProfile.templateId>
+  export type Event = damlLedger.Event<JudgeProfile, undefined, typeof JudgeProfile.templateId>
 }
 
 
 
-export declare type SendSignatoryConfirmation = {
+export declare type ParticipantProfile = {
+  participant: damlTypes.Party;
+  first: string;
+  last: string;
+  email: string;
 };
 
-export declare const SendSignatoryConfirmation:
-  damlTypes.Serializable<SendSignatoryConfirmation> & {
-  }
-;
-
-
-export declare type RenconciliationCertificate = {
-  coTemplate: CertificateOfOrigin;
-  customsGua: damlTypes.Party;
-  importer: damlTypes.Party;
+export declare const ParticipantProfile:
+  damlTypes.Template<ParticipantProfile, undefined, '2f44cb3c87b95e01f8db50b0c7aca53f58d085307ac4884f1f69be2e3e713ddf:Main:ParticipantProfile'> & {
+  Archive: damlTypes.Choice<ParticipantProfile, pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive, {}, undefined>;
 };
 
-export declare const RenconciliationCertificate:
-  damlTypes.Template<RenconciliationCertificate, undefined, 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:RenconciliationCertificate'> & {
-  Archive: damlTypes.Choice<RenconciliationCertificate, pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive, {}, undefined>;
-  SendSignatoryConfirmation: damlTypes.Choice<RenconciliationCertificate, SendSignatoryConfirmation, damlTypes.ContractId<ReleasedCertificate>, undefined>;
-};
-
-export declare namespace RenconciliationCertificate {
-  export type CreateEvent = damlLedger.CreateEvent<RenconciliationCertificate, undefined, typeof RenconciliationCertificate.templateId>
-  export type ArchiveEvent = damlLedger.ArchiveEvent<RenconciliationCertificate, typeof RenconciliationCertificate.templateId>
-  export type Event = damlLedger.Event<RenconciliationCertificate, undefined, typeof RenconciliationCertificate.templateId>
+export declare namespace ParticipantProfile {
+  export type CreateEvent = damlLedger.CreateEvent<ParticipantProfile, undefined, typeof ParticipantProfile.templateId>
+  export type ArchiveEvent = damlLedger.ArchiveEvent<ParticipantProfile, typeof ParticipantProfile.templateId>
+  export type Event = damlLedger.Event<ParticipantProfile, undefined, typeof ParticipantProfile.templateId>
 }
 
 
 
-export declare type SendThirdConfirmation = {
-  importinfo: Importinfo;
+export declare type ClientProfile = {
+  client: damlTypes.Party;
+  first: string;
+  last: string;
+  email: string;
 };
 
-export declare const SendThirdConfirmation:
-  damlTypes.Serializable<SendThirdConfirmation> & {
-  }
-;
-
-
-export declare type RequestCertificate = {
-  coTemplate: CertificateOfOrigin;
-  customsGua: damlTypes.Party;
-  importer: damlTypes.Party;
+export declare const ClientProfile:
+  damlTypes.Template<ClientProfile, undefined, '2f44cb3c87b95e01f8db50b0c7aca53f58d085307ac4884f1f69be2e3e713ddf:Main:ClientProfile'> & {
+  Archive: damlTypes.Choice<ClientProfile, pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive, {}, undefined>;
 };
 
-export declare const RequestCertificate:
-  damlTypes.Template<RequestCertificate, undefined, 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:RequestCertificate'> & {
-  Archive: damlTypes.Choice<RequestCertificate, pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive, {}, undefined>;
-  SendThirdConfirmation: damlTypes.Choice<RequestCertificate, SendThirdConfirmation, damlTypes.ContractId<RenconciliationCertificate>, undefined>;
-};
-
-export declare namespace RequestCertificate {
-  export type CreateEvent = damlLedger.CreateEvent<RequestCertificate, undefined, typeof RequestCertificate.templateId>
-  export type ArchiveEvent = damlLedger.ArchiveEvent<RequestCertificate, typeof RequestCertificate.templateId>
-  export type Event = damlLedger.Event<RequestCertificate, undefined, typeof RequestCertificate.templateId>
+export declare namespace ClientProfile {
+  export type CreateEvent = damlLedger.CreateEvent<ClientProfile, undefined, typeof ClientProfile.templateId>
+  export type ArchiveEvent = damlLedger.ArchiveEvent<ClientProfile, typeof ClientProfile.templateId>
+  export type Event = damlLedger.Event<ClientProfile, undefined, typeof ClientProfile.templateId>
 }
 
 
 
-export declare type RequestSecondConfirmation = {
+export declare type AddTeammate = {
 };
 
-export declare const RequestSecondConfirmation:
-  damlTypes.Serializable<RequestSecondConfirmation> & {
+export declare const AddTeammate:
+  damlTypes.Serializable<AddTeammate> & {
   }
 ;
 
 
-export declare type ReleaseCo = {
+export declare type AddUpdateSubmission = {
+  newDesc: string;
+  newName: string;
+  newChallengeName: string;
 };
 
-export declare const ReleaseCo:
-  damlTypes.Serializable<ReleaseCo> & {
+export declare const AddUpdateSubmission:
+  damlTypes.Serializable<AddUpdateSubmission> & {
   }
 ;
 
 
-export declare type ImportDeclaration = {
-  coTemplate: CertificateOfOrigin;
-  customsGua: damlTypes.Party;
-  importinfo: Importinfo;
-  importer: damlTypes.Party;
+export declare type ParticipantSubmission = {
+  participant: damlTypes.Party;
+  client: damlTypes.Party;
+  name: string;
+  desc: string;
+  submission: string;
+  challengeName: string;
+  participants: damlTypes.Party[];
 };
 
-export declare const ImportDeclaration:
-  damlTypes.Template<ImportDeclaration, undefined, 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:ImportDeclaration'> & {
-  Archive: damlTypes.Choice<ImportDeclaration, pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive, {}, undefined>;
-  ReleaseCo: damlTypes.Choice<ImportDeclaration, ReleaseCo, damlTypes.ContractId<ReleasedCertificate>, undefined>;
-  RequestSecondConfirmation: damlTypes.Choice<ImportDeclaration, RequestSecondConfirmation, damlTypes.ContractId<RequestCertificate>, undefined>;
+export declare const ParticipantSubmission:
+  damlTypes.Template<ParticipantSubmission, undefined, '2f44cb3c87b95e01f8db50b0c7aca53f58d085307ac4884f1f69be2e3e713ddf:Main:ParticipantSubmission'> & {
+  Archive: damlTypes.Choice<ParticipantSubmission, pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive, {}, undefined>;
+  AddUpdateSubmission: damlTypes.Choice<ParticipantSubmission, AddUpdateSubmission, damlTypes.ContractId<ParticipantSubmission>, undefined>;
+  AddTeammate: damlTypes.Choice<ParticipantSubmission, AddTeammate, damlTypes.ContractId<ParticipantSubmission>, undefined>;
 };
 
-export declare namespace ImportDeclaration {
-  export type CreateEvent = damlLedger.CreateEvent<ImportDeclaration, undefined, typeof ImportDeclaration.templateId>
-  export type ArchiveEvent = damlLedger.ArchiveEvent<ImportDeclaration, typeof ImportDeclaration.templateId>
-  export type Event = damlLedger.Event<ImportDeclaration, undefined, typeof ImportDeclaration.templateId>
+export declare namespace ParticipantSubmission {
+  export type CreateEvent = damlLedger.CreateEvent<ParticipantSubmission, undefined, typeof ParticipantSubmission.templateId>
+  export type ArchiveEvent = damlLedger.ArchiveEvent<ParticipantSubmission, typeof ParticipantSubmission.templateId>
+  export type Event = damlLedger.Event<ParticipantSubmission, undefined, typeof ParticipantSubmission.templateId>
 }
 
 
 
-export declare type SendImportDeclaration = {
-  customsGua: damlTypes.Party;
-  importinfo: Importinfo;
+export declare type AddEditSubmission = {
+  participant: damlTypes.Party;
+  subName: string;
+  subDesc: string;
+  submission: string;
+  challengeName: string;
 };
 
-export declare const SendImportDeclaration:
-  damlTypes.Serializable<SendImportDeclaration> & {
+export declare const AddEditSubmission:
+  damlTypes.Serializable<AddEditSubmission> & {
   }
 ;
 
 
-export declare type CoForImporter = {
-  coTemplate: CertificateOfOrigin;
-  importer: damlTypes.Party;
+export declare type AddJudge = {
+  judge: damlTypes.Party;
 };
 
-export declare const CoForImporter:
-  damlTypes.Template<CoForImporter, undefined, 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:CoForImporter'> & {
-  Archive: damlTypes.Choice<CoForImporter, pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive, {}, undefined>;
-  SendImportDeclaration: damlTypes.Choice<CoForImporter, SendImportDeclaration, damlTypes.ContractId<ImportDeclaration>, undefined>;
-};
-
-export declare namespace CoForImporter {
-  export type CreateEvent = damlLedger.CreateEvent<CoForImporter, undefined, typeof CoForImporter.templateId>
-  export type ArchiveEvent = damlLedger.ArchiveEvent<CoForImporter, typeof CoForImporter.templateId>
-  export type Event = damlLedger.Event<CoForImporter, undefined, typeof CoForImporter.templateId>
-}
-
-
-
-export declare type SendCo = {
-  importer: damlTypes.Party;
-};
-
-export declare const SendCo:
-  damlTypes.Serializable<SendCo> & {
+export declare const AddJudge:
+  damlTypes.Serializable<AddJudge> & {
   }
 ;
 
 
-export declare type InspectCertificate = {
-  coTemplate: CertificateOfOrigin;
+export declare type AddParticipant = {
+  participant: damlTypes.Party;
 };
 
-export declare const InspectCertificate:
-  damlTypes.Template<InspectCertificate, undefined, 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:InspectCertificate'> & {
-  Archive: damlTypes.Choice<InspectCertificate, pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive, {}, undefined>;
-  SendCo: damlTypes.Choice<InspectCertificate, SendCo, damlTypes.ContractId<CoForImporter>, undefined>;
-};
-
-export declare namespace InspectCertificate {
-  export type CreateEvent = damlLedger.CreateEvent<InspectCertificate, undefined, typeof InspectCertificate.templateId>
-  export type ArchiveEvent = damlLedger.ArchiveEvent<InspectCertificate, typeof InspectCertificate.templateId>
-  export type Event = damlLedger.Event<InspectCertificate, undefined, typeof InspectCertificate.templateId>
-}
-
-
-
-export declare type ConfirmCo = {
-};
-
-export declare const ConfirmCo:
-  damlTypes.Serializable<ConfirmCo> & {
+export declare const AddParticipant:
+  damlTypes.Serializable<AddParticipant> & {
   }
 ;
 
 
-export declare type CertificateOfOrigin = {
-  exporter: damlTypes.Party;
-  customsMar: damlTypes.Party;
+export declare type AddUpdateChallenge = {
+  challenge: Challenge;
 };
 
-export declare const CertificateOfOrigin:
-  damlTypes.Template<CertificateOfOrigin, undefined, 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:CertificateOfOrigin'> & {
-  Archive: damlTypes.Choice<CertificateOfOrigin, pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive, {}, undefined>;
-  ConfirmCo: damlTypes.Choice<CertificateOfOrigin, ConfirmCo, damlTypes.ContractId<InspectCertificate>, undefined>;
-};
-
-export declare namespace CertificateOfOrigin {
-  export type CreateEvent = damlLedger.CreateEvent<CertificateOfOrigin, undefined, typeof CertificateOfOrigin.templateId>
-  export type ArchiveEvent = damlLedger.ArchiveEvent<CertificateOfOrigin, typeof CertificateOfOrigin.templateId>
-  export type Event = damlLedger.Event<CertificateOfOrigin, undefined, typeof CertificateOfOrigin.templateId>
-}
-
-
-
-export declare type CreateCO = {
-  coData: COData;
-  customsMar: damlTypes.Party;
-};
-
-export declare const CreateCO:
-  damlTypes.Serializable<CreateCO> & {
+export declare const AddUpdateChallenge:
+  damlTypes.Serializable<AddUpdateChallenge> & {
   }
 ;
 
 
-export declare type ExporterRole = {
+export declare type AddUpdateCriteria = {
+  newCriteria: string;
+};
+
+export declare const AddUpdateCriteria:
+  damlTypes.Serializable<AddUpdateCriteria> & {
+  }
+;
+
+
+export declare type AddUpdateDescription = {
+  newDesc: string;
+};
+
+export declare const AddUpdateDescription:
+  damlTypes.Serializable<AddUpdateDescription> & {
+  }
+;
+
+
+export declare type ClientProject = {
+  client: damlTypes.Party;
   operator: damlTypes.Party;
-  exporter: damlTypes.Party;
+  projectId: string;
+  name: string;
+  desc: string;
+  criteria: string;
+  challenges: Challenge[];
+  participants: damlTypes.Party[];
+  judges: damlTypes.Party[];
+  projects: ParticipantSubmission[];
 };
 
-export declare const ExporterRole:
-  damlTypes.Template<ExporterRole, undefined, 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:ExporterRole'> & {
-  Archive: damlTypes.Choice<ExporterRole, pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive, {}, undefined>;
-  CreateCO: damlTypes.Choice<ExporterRole, CreateCO, damlTypes.ContractId<CertificateOfOrigin>, undefined>;
+export declare const ClientProject:
+  damlTypes.Template<ClientProject, ClientProject.Key, '2f44cb3c87b95e01f8db50b0c7aca53f58d085307ac4884f1f69be2e3e713ddf:Main:ClientProject'> & {
+  Archive: damlTypes.Choice<ClientProject, pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive, {}, ClientProject.Key>;
+  AddUpdateDescription: damlTypes.Choice<ClientProject, AddUpdateDescription, damlTypes.ContractId<ClientProject>, ClientProject.Key>;
+  AddUpdateCriteria: damlTypes.Choice<ClientProject, AddUpdateCriteria, damlTypes.ContractId<ClientProject>, ClientProject.Key>;
+  AddUpdateChallenge: damlTypes.Choice<ClientProject, AddUpdateChallenge, damlTypes.ContractId<ClientProject>, ClientProject.Key>;
+  AddParticipant: damlTypes.Choice<ClientProject, AddParticipant, damlTypes.ContractId<ClientProject>, ClientProject.Key>;
+  AddJudge: damlTypes.Choice<ClientProject, AddJudge, damlTypes.ContractId<ClientProject>, ClientProject.Key>;
+  AddEditSubmission: damlTypes.Choice<ClientProject, AddEditSubmission, damlTypes.ContractId<ClientProject>, ClientProject.Key>;
 };
 
-export declare namespace ExporterRole {
-  export type CreateEvent = damlLedger.CreateEvent<ExporterRole, undefined, typeof ExporterRole.templateId>
-  export type ArchiveEvent = damlLedger.ArchiveEvent<ExporterRole, typeof ExporterRole.templateId>
-  export type Event = damlLedger.Event<ExporterRole, undefined, typeof ExporterRole.templateId>
+export declare namespace ClientProject {
+  export type Key = pkg40f452260bef3f29dede136108fc08a88d5a5250310281067087da6f0baddff7.DA.Types.Tuple2<damlTypes.Party, string>
+  export type CreateEvent = damlLedger.CreateEvent<ClientProject, ClientProject.Key, typeof ClientProject.templateId>
+  export type ArchiveEvent = damlLedger.ArchiveEvent<ClientProject, typeof ClientProject.templateId>
+  export type Event = damlLedger.Event<ClientProject, ClientProject.Key, typeof ClientProject.templateId>
 }
 
 
 
-export declare type AcceptExporterInvitation = {
+export declare type CreateProject = {
+  name: string;
+  projectId: string;
 };
 
-export declare const AcceptExporterInvitation:
-  damlTypes.Serializable<AcceptExporterInvitation> & {
+export declare const CreateProject:
+  damlTypes.Serializable<CreateProject> & {
   }
 ;
 
 
-export declare type ExporterInvitation = {
-  operator: damlTypes.Party;
-  exporter: damlTypes.Party;
+export declare type AddEditCliProfile = {
+  first: string;
+  last: string;
+  email: string;
 };
 
-export declare const ExporterInvitation:
-  damlTypes.Template<ExporterInvitation, undefined, 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:ExporterInvitation'> & {
-  Archive: damlTypes.Choice<ExporterInvitation, pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive, {}, undefined>;
-  AcceptExporterInvitation: damlTypes.Choice<ExporterInvitation, AcceptExporterInvitation, damlTypes.ContractId<ExporterRole>, undefined>;
-};
-
-export declare namespace ExporterInvitation {
-  export type CreateEvent = damlLedger.CreateEvent<ExporterInvitation, undefined, typeof ExporterInvitation.templateId>
-  export type ArchiveEvent = damlLedger.ArchiveEvent<ExporterInvitation, typeof ExporterInvitation.templateId>
-  export type Event = damlLedger.Event<ExporterInvitation, undefined, typeof ExporterInvitation.templateId>
-}
-
-
-
-export declare type ImporterRole = {
-  operator: damlTypes.Party;
-  importer: damlTypes.Party;
-};
-
-export declare const ImporterRole:
-  damlTypes.Template<ImporterRole, undefined, 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:ImporterRole'> & {
-  Archive: damlTypes.Choice<ImporterRole, pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive, {}, undefined>;
-};
-
-export declare namespace ImporterRole {
-  export type CreateEvent = damlLedger.CreateEvent<ImporterRole, undefined, typeof ImporterRole.templateId>
-  export type ArchiveEvent = damlLedger.ArchiveEvent<ImporterRole, typeof ImporterRole.templateId>
-  export type Event = damlLedger.Event<ImporterRole, undefined, typeof ImporterRole.templateId>
-}
-
-
-
-export declare type AcceptImporterInvitation = {
-};
-
-export declare const AcceptImporterInvitation:
-  damlTypes.Serializable<AcceptImporterInvitation> & {
+export declare const AddEditCliProfile:
+  damlTypes.Serializable<AddEditCliProfile> & {
   }
 ;
 
 
-export declare type ImporterInvitation = {
-  operator: damlTypes.Party;
-  importer: damlTypes.Party;
-};
-
-export declare const ImporterInvitation:
-  damlTypes.Template<ImporterInvitation, undefined, 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:ImporterInvitation'> & {
-  Archive: damlTypes.Choice<ImporterInvitation, pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive, {}, undefined>;
-  AcceptImporterInvitation: damlTypes.Choice<ImporterInvitation, AcceptImporterInvitation, damlTypes.ContractId<ImporterRole>, undefined>;
-};
-
-export declare namespace ImporterInvitation {
-  export type CreateEvent = damlLedger.CreateEvent<ImporterInvitation, undefined, typeof ImporterInvitation.templateId>
-  export type ArchiveEvent = damlLedger.ArchiveEvent<ImporterInvitation, typeof ImporterInvitation.templateId>
-  export type Event = damlLedger.Event<ImporterInvitation, undefined, typeof ImporterInvitation.templateId>
-}
-
-
-
-export declare type CustomsGuaRole = {
-  operator: damlTypes.Party;
-  customsGua: damlTypes.Party;
-};
-
-export declare const CustomsGuaRole:
-  damlTypes.Template<CustomsGuaRole, undefined, 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:CustomsGuaRole'> & {
-  Archive: damlTypes.Choice<CustomsGuaRole, pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive, {}, undefined>;
-};
-
-export declare namespace CustomsGuaRole {
-  export type CreateEvent = damlLedger.CreateEvent<CustomsGuaRole, undefined, typeof CustomsGuaRole.templateId>
-  export type ArchiveEvent = damlLedger.ArchiveEvent<CustomsGuaRole, typeof CustomsGuaRole.templateId>
-  export type Event = damlLedger.Event<CustomsGuaRole, undefined, typeof CustomsGuaRole.templateId>
-}
-
-
-
-export declare type AcceptCustomsGuaInvitation = {
-};
-
-export declare const AcceptCustomsGuaInvitation:
-  damlTypes.Serializable<AcceptCustomsGuaInvitation> & {
-  }
-;
-
-
-export declare type CustomsGuaInvitation = {
-  operator: damlTypes.Party;
-  customsGua: damlTypes.Party;
-};
-
-export declare const CustomsGuaInvitation:
-  damlTypes.Template<CustomsGuaInvitation, undefined, 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:CustomsGuaInvitation'> & {
-  Archive: damlTypes.Choice<CustomsGuaInvitation, pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive, {}, undefined>;
-  AcceptCustomsGuaInvitation: damlTypes.Choice<CustomsGuaInvitation, AcceptCustomsGuaInvitation, damlTypes.ContractId<CustomsGuaRole>, undefined>;
-};
-
-export declare namespace CustomsGuaInvitation {
-  export type CreateEvent = damlLedger.CreateEvent<CustomsGuaInvitation, undefined, typeof CustomsGuaInvitation.templateId>
-  export type ArchiveEvent = damlLedger.ArchiveEvent<CustomsGuaInvitation, typeof CustomsGuaInvitation.templateId>
-  export type Event = damlLedger.Event<CustomsGuaInvitation, undefined, typeof CustomsGuaInvitation.templateId>
-}
-
-
-
-export declare type CustomsMarRole = {
-  operator: damlTypes.Party;
-  customsMar: damlTypes.Party;
-};
-
-export declare const CustomsMarRole:
-  damlTypes.Template<CustomsMarRole, undefined, 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:CustomsMarRole'> & {
-  Archive: damlTypes.Choice<CustomsMarRole, pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive, {}, undefined>;
-};
-
-export declare namespace CustomsMarRole {
-  export type CreateEvent = damlLedger.CreateEvent<CustomsMarRole, undefined, typeof CustomsMarRole.templateId>
-  export type ArchiveEvent = damlLedger.ArchiveEvent<CustomsMarRole, typeof CustomsMarRole.templateId>
-  export type Event = damlLedger.Event<CustomsMarRole, undefined, typeof CustomsMarRole.templateId>
-}
-
-
-
-export declare type AcceptCustomsMarInvitation = {
-};
-
-export declare const AcceptCustomsMarInvitation:
-  damlTypes.Serializable<AcceptCustomsMarInvitation> & {
-  }
-;
-
-
-export declare type CustomsMarInvitation = {
-  operator: damlTypes.Party;
-  customsMar: damlTypes.Party;
-};
-
-export declare const CustomsMarInvitation:
-  damlTypes.Template<CustomsMarInvitation, undefined, 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:CustomsMarInvitation'> & {
-  Archive: damlTypes.Choice<CustomsMarInvitation, pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive, {}, undefined>;
-  AcceptCustomsMarInvitation: damlTypes.Choice<CustomsMarInvitation, AcceptCustomsMarInvitation, damlTypes.ContractId<CustomsMarRole>, undefined>;
-};
-
-export declare namespace CustomsMarInvitation {
-  export type CreateEvent = damlLedger.CreateEvent<CustomsMarInvitation, undefined, typeof CustomsMarInvitation.templateId>
-  export type ArchiveEvent = damlLedger.ArchiveEvent<CustomsMarInvitation, typeof CustomsMarInvitation.templateId>
-  export type Event = damlLedger.Event<CustomsMarInvitation, undefined, typeof CustomsMarInvitation.templateId>
-}
-
-
-
-export declare type InviteCustomsGua = {
-  customsGua: damlTypes.Party;
-};
-
-export declare const InviteCustomsGua:
-  damlTypes.Serializable<InviteCustomsGua> & {
-  }
-;
-
-
-export declare type InviteImporter = {
-  importer: damlTypes.Party;
-};
-
-export declare const InviteImporter:
-  damlTypes.Serializable<InviteImporter> & {
-  }
-;
-
-
-export declare type InviteExporter = {
-  exporter: damlTypes.Party;
-};
-
-export declare const InviteExporter:
-  damlTypes.Serializable<InviteExporter> & {
-  }
-;
-
-
-export declare type InviteCustomsMar = {
-  customsMar: damlTypes.Party;
-};
-
-export declare const InviteCustomsMar:
-  damlTypes.Serializable<InviteCustomsMar> & {
-  }
-;
-
-
-export declare type Network = {
+export declare type ClientRole = {
+  client: damlTypes.Party;
   operator: damlTypes.Party;
 };
 
-export declare const Network:
-  damlTypes.Template<Network, undefined, 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:Network'> & {
-  Archive: damlTypes.Choice<Network, pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive, {}, undefined>;
-  InviteCustomsMar: damlTypes.Choice<Network, InviteCustomsMar, damlTypes.ContractId<CustomsMarInvitation>, undefined>;
-  InviteExporter: damlTypes.Choice<Network, InviteExporter, damlTypes.ContractId<ExporterInvitation>, undefined>;
-  InviteImporter: damlTypes.Choice<Network, InviteImporter, damlTypes.ContractId<ImporterInvitation>, undefined>;
-  InviteCustomsGua: damlTypes.Choice<Network, InviteCustomsGua, damlTypes.ContractId<CustomsGuaInvitation>, undefined>;
+export declare const ClientRole:
+  damlTypes.Template<ClientRole, undefined, '2f44cb3c87b95e01f8db50b0c7aca53f58d085307ac4884f1f69be2e3e713ddf:Main:ClientRole'> & {
+  Archive: damlTypes.Choice<ClientRole, pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive, {}, undefined>;
+  AddEditCliProfile: damlTypes.Choice<ClientRole, AddEditCliProfile, damlTypes.ContractId<ClientProfile>, undefined>;
+  CreateProject: damlTypes.Choice<ClientRole, CreateProject, damlTypes.ContractId<ClientProject>, undefined>;
 };
 
-export declare namespace Network {
-  export type CreateEvent = damlLedger.CreateEvent<Network, undefined, typeof Network.templateId>
-  export type ArchiveEvent = damlLedger.ArchiveEvent<Network, typeof Network.templateId>
-  export type Event = damlLedger.Event<Network, undefined, typeof Network.templateId>
+export declare namespace ClientRole {
+  export type CreateEvent = damlLedger.CreateEvent<ClientRole, undefined, typeof ClientRole.templateId>
+  export type ArchiveEvent = damlLedger.ArchiveEvent<ClientRole, typeof ClientRole.templateId>
+  export type Event = damlLedger.Event<ClientRole, undefined, typeof ClientRole.templateId>
 }
 
 
 
-export declare type Announcement = {
-  user: damlTypes.Party;
+export declare type AcceptRequest = {
 };
 
-export declare const Announcement:
-  damlTypes.Template<Announcement, undefined, 'e6fa0f3daff63230e390ab7d3dc00e886e499d8c4c62a62058dc4b756ee3e4ac:Main:Announcement'> & {
-  Archive: damlTypes.Choice<Announcement, pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive, {}, undefined>;
-};
-
-export declare namespace Announcement {
-  export type CreateEvent = damlLedger.CreateEvent<Announcement, undefined, typeof Announcement.templateId>
-  export type ArchiveEvent = damlLedger.ArchiveEvent<Announcement, typeof Announcement.templateId>
-  export type Event = damlLedger.Event<Announcement, undefined, typeof Announcement.templateId>
-}
-
-
-
-export declare type COData = {
-  ref: string;
-  originCountry: string;
-  destinationCountry: string;
-  goods: string;
-  itemRef: string;
-  transportInfo: string;
-  certificateContent: string;
-};
-
-export declare const COData:
-  damlTypes.Serializable<COData> & {
+export declare const AcceptRequest:
+  damlTypes.Serializable<AcceptRequest> & {
   }
 ;
 
 
-export declare type Importinfo = {
-  quantity: damlTypes.Int;
-  value: damlTypes.Numeric;
+export declare type ClientInvitation = {
+  client: damlTypes.Party;
+  operator: damlTypes.Party;
 };
 
-export declare const Importinfo:
-  damlTypes.Serializable<Importinfo> & {
+export declare const ClientInvitation:
+  damlTypes.Template<ClientInvitation, undefined, '2f44cb3c87b95e01f8db50b0c7aca53f58d085307ac4884f1f69be2e3e713ddf:Main:ClientInvitation'> & {
+  Archive: damlTypes.Choice<ClientInvitation, pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive, {}, undefined>;
+  AcceptRequest: damlTypes.Choice<ClientInvitation, AcceptRequest, damlTypes.ContractId<ClientRole>, undefined>;
+};
+
+export declare namespace ClientInvitation {
+  export type CreateEvent = damlLedger.CreateEvent<ClientInvitation, undefined, typeof ClientInvitation.templateId>
+  export type ArchiveEvent = damlLedger.ArchiveEvent<ClientInvitation, typeof ClientInvitation.templateId>
+  export type Event = damlLedger.Event<ClientInvitation, undefined, typeof ClientInvitation.templateId>
+}
+
+
+
+export declare type AddParticipantToProject = {
+};
+
+export declare const AddParticipantToProject:
+  damlTypes.Serializable<AddParticipantToProject> & {
+  }
+;
+
+
+export declare type RequestToJoinProject = {
+  participant: damlTypes.Party;
+  client: damlTypes.Party;
+  operator: damlTypes.Party;
+  projectId: string;
+};
+
+export declare const RequestToJoinProject:
+  damlTypes.Template<RequestToJoinProject, undefined, '2f44cb3c87b95e01f8db50b0c7aca53f58d085307ac4884f1f69be2e3e713ddf:Main:RequestToJoinProject'> & {
+  Archive: damlTypes.Choice<RequestToJoinProject, pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive, {}, undefined>;
+  AddParticipantToProject: damlTypes.Choice<RequestToJoinProject, AddParticipantToProject, damlTypes.ContractId<ClientProject>, undefined>;
+};
+
+export declare namespace RequestToJoinProject {
+  export type CreateEvent = damlLedger.CreateEvent<RequestToJoinProject, undefined, typeof RequestToJoinProject.templateId>
+  export type ArchiveEvent = damlLedger.ArchiveEvent<RequestToJoinProject, typeof RequestToJoinProject.templateId>
+  export type Event = damlLedger.Event<RequestToJoinProject, undefined, typeof RequestToJoinProject.templateId>
+}
+
+
+
+export declare type RegisterForProject = {
+  projectId: string;
+  client: damlTypes.Party;
+};
+
+export declare const RegisterForProject:
+  damlTypes.Serializable<RegisterForProject> & {
+  }
+;
+
+
+export declare type AddParProfile = {
+  first: string;
+  last: string;
+  email: string;
+};
+
+export declare const AddParProfile:
+  damlTypes.Serializable<AddParProfile> & {
+  }
+;
+
+
+export declare type ParticipantRole = {
+  participant: damlTypes.Party;
+  operator: damlTypes.Party;
+};
+
+export declare const ParticipantRole:
+  damlTypes.Template<ParticipantRole, undefined, '2f44cb3c87b95e01f8db50b0c7aca53f58d085307ac4884f1f69be2e3e713ddf:Main:ParticipantRole'> & {
+  Archive: damlTypes.Choice<ParticipantRole, pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive, {}, undefined>;
+  AddParProfile: damlTypes.Choice<ParticipantRole, AddParProfile, damlTypes.ContractId<ParticipantProfile>, undefined>;
+  RegisterForProject: damlTypes.Choice<ParticipantRole, RegisterForProject, damlTypes.ContractId<RequestToJoinProject>, undefined>;
+};
+
+export declare namespace ParticipantRole {
+  export type CreateEvent = damlLedger.CreateEvent<ParticipantRole, undefined, typeof ParticipantRole.templateId>
+  export type ArchiveEvent = damlLedger.ArchiveEvent<ParticipantRole, typeof ParticipantRole.templateId>
+  export type Event = damlLedger.Event<ParticipantRole, undefined, typeof ParticipantRole.templateId>
+}
+
+
+
+export declare type AcceptParticipantRequest = {
+};
+
+export declare const AcceptParticipantRequest:
+  damlTypes.Serializable<AcceptParticipantRequest> & {
+  }
+;
+
+
+export declare type ParticipantInvitation = {
+  participant: damlTypes.Party;
+  operator: damlTypes.Party;
+};
+
+export declare const ParticipantInvitation:
+  damlTypes.Template<ParticipantInvitation, undefined, '2f44cb3c87b95e01f8db50b0c7aca53f58d085307ac4884f1f69be2e3e713ddf:Main:ParticipantInvitation'> & {
+  Archive: damlTypes.Choice<ParticipantInvitation, pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive, {}, undefined>;
+  AcceptParticipantRequest: damlTypes.Choice<ParticipantInvitation, AcceptParticipantRequest, damlTypes.ContractId<ParticipantRole>, undefined>;
+};
+
+export declare namespace ParticipantInvitation {
+  export type CreateEvent = damlLedger.CreateEvent<ParticipantInvitation, undefined, typeof ParticipantInvitation.templateId>
+  export type ArchiveEvent = damlLedger.ArchiveEvent<ParticipantInvitation, typeof ParticipantInvitation.templateId>
+  export type Event = damlLedger.Event<ParticipantInvitation, undefined, typeof ParticipantInvitation.templateId>
+}
+
+
+
+export declare type AddJudgeToProject = {
+};
+
+export declare const AddJudgeToProject:
+  damlTypes.Serializable<AddJudgeToProject> & {
+  }
+;
+
+
+export declare type RequestToJudgeProject = {
+  judge: damlTypes.Party;
+  client: damlTypes.Party;
+  operator: damlTypes.Party;
+  projectId: string;
+};
+
+export declare const RequestToJudgeProject:
+  damlTypes.Template<RequestToJudgeProject, undefined, '2f44cb3c87b95e01f8db50b0c7aca53f58d085307ac4884f1f69be2e3e713ddf:Main:RequestToJudgeProject'> & {
+  Archive: damlTypes.Choice<RequestToJudgeProject, pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive, {}, undefined>;
+  AddJudgeToProject: damlTypes.Choice<RequestToJudgeProject, AddJudgeToProject, damlTypes.ContractId<ClientProject>, undefined>;
+};
+
+export declare namespace RequestToJudgeProject {
+  export type CreateEvent = damlLedger.CreateEvent<RequestToJudgeProject, undefined, typeof RequestToJudgeProject.templateId>
+  export type ArchiveEvent = damlLedger.ArchiveEvent<RequestToJudgeProject, typeof RequestToJudgeProject.templateId>
+  export type Event = damlLedger.Event<RequestToJudgeProject, undefined, typeof RequestToJudgeProject.templateId>
+}
+
+
+
+export declare type JudgeForProject = {
+  projectId: string;
+  client: damlTypes.Party;
+};
+
+export declare const JudgeForProject:
+  damlTypes.Serializable<JudgeForProject> & {
+  }
+;
+
+
+export declare type AddEditJudProfile = {
+  first: string;
+  last: string;
+  email: string;
+};
+
+export declare const AddEditJudProfile:
+  damlTypes.Serializable<AddEditJudProfile> & {
+  }
+;
+
+
+export declare type JudgeRole = {
+  judge: damlTypes.Party;
+  operator: damlTypes.Party;
+};
+
+export declare const JudgeRole:
+  damlTypes.Template<JudgeRole, undefined, '2f44cb3c87b95e01f8db50b0c7aca53f58d085307ac4884f1f69be2e3e713ddf:Main:JudgeRole'> & {
+  Archive: damlTypes.Choice<JudgeRole, pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive, {}, undefined>;
+  AddEditJudProfile: damlTypes.Choice<JudgeRole, AddEditJudProfile, damlTypes.ContractId<JudgeProfile>, undefined>;
+  JudgeForProject: damlTypes.Choice<JudgeRole, JudgeForProject, damlTypes.ContractId<RequestToJudgeProject>, undefined>;
+};
+
+export declare namespace JudgeRole {
+  export type CreateEvent = damlLedger.CreateEvent<JudgeRole, undefined, typeof JudgeRole.templateId>
+  export type ArchiveEvent = damlLedger.ArchiveEvent<JudgeRole, typeof JudgeRole.templateId>
+  export type Event = damlLedger.Event<JudgeRole, undefined, typeof JudgeRole.templateId>
+}
+
+
+
+export declare type AcceptjudgeRequest = {
+};
+
+export declare const AcceptjudgeRequest:
+  damlTypes.Serializable<AcceptjudgeRequest> & {
+  }
+;
+
+
+export declare type JudgeInvitation = {
+  judge: damlTypes.Party;
+  operator: damlTypes.Party;
+};
+
+export declare const JudgeInvitation:
+  damlTypes.Template<JudgeInvitation, undefined, '2f44cb3c87b95e01f8db50b0c7aca53f58d085307ac4884f1f69be2e3e713ddf:Main:JudgeInvitation'> & {
+  Archive: damlTypes.Choice<JudgeInvitation, pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive, {}, undefined>;
+  AcceptjudgeRequest: damlTypes.Choice<JudgeInvitation, AcceptjudgeRequest, damlTypes.ContractId<JudgeRole>, undefined>;
+};
+
+export declare namespace JudgeInvitation {
+  export type CreateEvent = damlLedger.CreateEvent<JudgeInvitation, undefined, typeof JudgeInvitation.templateId>
+  export type ArchiveEvent = damlLedger.ArchiveEvent<JudgeInvitation, typeof JudgeInvitation.templateId>
+  export type Event = damlLedger.Event<JudgeInvitation, undefined, typeof JudgeInvitation.templateId>
+}
+
+
+
+export declare type InviteJudge = {
+  judge: damlTypes.Party;
+};
+
+export declare const InviteJudge:
+  damlTypes.Serializable<InviteJudge> & {
+  }
+;
+
+
+export declare type InviteParticipant = {
+  participant: damlTypes.Party;
+};
+
+export declare const InviteParticipant:
+  damlTypes.Serializable<InviteParticipant> & {
+  }
+;
+
+
+export declare type InviteClient = {
+  client: damlTypes.Party;
+};
+
+export declare const InviteClient:
+  damlTypes.Serializable<InviteClient> & {
+  }
+;
+
+
+export declare type Platform = {
+  operator: damlTypes.Party;
+};
+
+export declare const Platform:
+  damlTypes.Template<Platform, undefined, '2f44cb3c87b95e01f8db50b0c7aca53f58d085307ac4884f1f69be2e3e713ddf:Main:Platform'> & {
+  Archive: damlTypes.Choice<Platform, pkgd14e08374fc7197d6a0de468c968ae8ba3aadbf9315476fd39071831f5923662.DA.Internal.Template.Archive, {}, undefined>;
+  InviteClient: damlTypes.Choice<Platform, InviteClient, damlTypes.ContractId<ClientInvitation>, undefined>;
+  InviteParticipant: damlTypes.Choice<Platform, InviteParticipant, damlTypes.ContractId<ParticipantInvitation>, undefined>;
+  InviteJudge: damlTypes.Choice<Platform, InviteJudge, damlTypes.ContractId<JudgeInvitation>, undefined>;
+};
+
+export declare namespace Platform {
+  export type CreateEvent = damlLedger.CreateEvent<Platform, undefined, typeof Platform.templateId>
+  export type ArchiveEvent = damlLedger.ArchiveEvent<Platform, typeof Platform.templateId>
+  export type Event = damlLedger.Event<Platform, undefined, typeof Platform.templateId>
+}
+
+
+
+export declare type Challenge = {
+  name: string;
+  prize: string;
+};
+
+export declare const Challenge:
+  damlTypes.Serializable<Challenge> & {
   }
 ;
 

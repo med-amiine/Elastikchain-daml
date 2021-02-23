@@ -2,13 +2,13 @@ module Main where
 
 -- Expected workflow :
 --  operator(Elastik)-->InviteParticipant/InviteClient / AddParticipantToProject / InviteJudge / JudgeCriteria
---  participant-->AcceptParticipantRequest / AddEditProfile / *AddEditsubmission / *CreateTeam / *JoinTeam / 
---  client--> CreateProject / CreatChallenge / AddEditProfile / AddJudgeToProject
+--  participant-->AcceptParticipantRequest / AddEditProfile / *AddEditsubmission / *JoinTeam / 
+--  client--> CreateProject / CreatChallenge / AddEditProfile / AddJudgeToProject by client
 --  judgs -->  *VoteForProject(SpecifyRating) 
 
--- anybody can be an operator ?? specify only one operator
--- participant should not be invited multiple times !!
--- shoud not have two profiles ol
+-- anybody can be an operator ?? specify only one operator => once in production auth will fix the issue
+-- participant should not be invited multiple times !! // auth will solve it
+-- shoud not have two profiles // nonconsuming
 
 -- import Daml.Script
 -- import DA.Date
@@ -46,7 +46,7 @@ template Platform
 
 --  ----------------------------------------------------------------
 
--- Judge invitation
+-- Judge invitation / Request to join a hackathon
 template JudgeInvitation
   with
     judge: Party 
@@ -63,7 +63,16 @@ template JudgeRole
     judge: Party 
     operator: Party 
   where 
-    signatory judge, operator 
+    signatory judge, operator
+
+    controller judge can 
+      nonconsuming AddEditJudProfile: ContractId JudgeProfile
+        with
+          first:Text
+          last:Text
+          email:Text
+        do
+          create JudgeProfile with ..
 
     controller judge can 
       nonconsuming JudgeForProject: ContractId RequestToJudgeProject
@@ -88,7 +97,7 @@ template RequestToJudgeProject
 
 --  ----------------------------------------------------------------
 
--- Participant invitation
+-- Participant invitation / Request to join a hackathon
 template ParticipantInvitation
   with
     participant: Party 
@@ -173,7 +182,7 @@ template ClientRole
           name: Text 
           projectId: Text
         do 
-          create ClientProject with operator, client, projectId, name, desc = "", criteria = "", challenges = [], participants = [], judges = []
+          create ClientProject with operator, client, projectId, name, desc = "", criteria = "", challenges = [], participants = [], judges = [],projects=[]
 
 --  ----------------------------------------------------------------
 
@@ -189,6 +198,7 @@ template ClientProject
     challenges: [Challenge]
     participants: [Party]
     judges: [Party]
+    projects:[ParticipantSubmission]
   where
     signatory client 
     observer participants
@@ -227,8 +237,59 @@ template ClientProject
           judge: Party 
         do create this with operator, client, name, desc, criteria, challenges, judges = judge::judges
 
+    choice AddEditSubmission: ContractId ClientProject
+        with
+          participant: Party 
+          subName: Text 
+          subDesc:  Text
+          submission: Text
+          challengeName: Text
+        controller participant
+        do
+          p <- create ParticipantSubmission with participant,name= subName,desc= subDesc,submission,challengeName,client,participants
+          proj <- fetch p
+          create this with projects = proj::projects
 
--- client / participant profile
+         
+
+
+
+--  ----------------------------------------------------------------
+
+-- create a submission
+template ParticipantSubmission
+  with 
+    participant: Party 
+    client: Party
+    -- submissionId: Text
+    name: Text 
+    desc:  Text
+    submission: Text
+    challengeName: Text
+    participants: [Party]
+  where
+    signatory participant 
+    observer participants
+    observer client
+    
+
+    controller participant can 
+       AddUpdateSubmission: ContractId ParticipantSubmission 
+        with 
+          newDesc: Text 
+          newName: Text 
+          newChallengeName: Text 
+        do create this with participant, name= newName, desc= newDesc, challengeName= newChallengeName
+    
+    controller participant can 
+       AddTeammate: ContractId ParticipantSubmission 
+        -- with 
+        --   participant: Party 
+        do create this with  participant, name, desc,participants = participant::participants
+
+--  ----------------------------------------------------------------
+
+-- profile : client, participant, Judge 
 
 template ClientProfile
   with 
@@ -239,8 +300,6 @@ template ClientProfile
   where 
     signatory client
 
-
-
 template ParticipantProfile
   with 
     participant: Party 
@@ -249,3 +308,12 @@ template ParticipantProfile
     email: Text
   where 
     signatory participant
+
+template JudgeProfile
+  with 
+    judge: Party 
+    first: Text 
+    last:  Text
+    email: Text
+  where 
+    signatory judge

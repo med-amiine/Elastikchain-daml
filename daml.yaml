@@ -2,11 +2,11 @@ sdk-version: 1.7.0
 name: cosmart
 source: daml
 parties:
- - operator  
- - exporter
- - customsmar
- - importer
- - customsgua
+ - elastik  
+ - Asx
+ - Yuling
+ - Mohammed
+ - Andy
 version: 0.0.1
 # init-script: Main:setup
 start-navigator: true
